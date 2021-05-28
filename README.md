@@ -21,32 +21,32 @@ Objective: Develop a contact mananger web app.
 	- [x] index.html
 - [x] Create CSS stylesheet
 - [x] Create login database
-- [] Create APIs
-	- [] Login API
-	- [] Registration API
-	- [] Create API
-	- [] Search API
-	- [] Update API
-	- [] Delete API
-- [] Test APIs
-	- [] Login API
-	- [] Registration API
-	- [] Create API
-	- [] Search API
-	- [] Update API
-	- [] Delete API
-- [] Finialize HTML pages
-	- [] register.html
-	- [] home.html
-	- [] index.html
-- [] Integrate front end with back end
-	- [] register.html
-	- [] home.html
-	- [] index.html
-- [] Database with sample data
-- [] Setup www.contactus27.xyz
-- [] Setup encryption
-- [] Setup password recovery
+- [ ] Create APIs
+	- [ ] Login API
+	- [ ] Registration API
+	- [ ] Create API
+	- [ ] Search API
+	- [ ] Update API
+	- [ ] Delete API
+- [ ] Test APIs
+	- [ ] Login API
+	- [ ] Registration API
+	- [ ] Create API
+	- [ ] Search API
+	- [ ] Update API
+	- [ ] Delete API
+- [ ] Finialize HTML pages
+	- [ ] register.html
+	- [ ] home.html
+	- [ ] index.html
+- [ ] Integrate front end with back end
+	- [ ] register.html
+	- [ ] home.html
+	- [ ] index.html
+- [ ] Database with sample data
+- [ ] Setup www.contactus27.xyz
+- [ ] Setup encryption
+- [ ] Setup password recovery
 
 ### Database Entity Relationship Diagram (ERD)
 ![](https://cdn.discordapp.com/attachments/844984336586375250/847205904894132314/ERD_Type.PNG)
