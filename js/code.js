@@ -1,0 +1,190 @@
+// Easily modifiable variables for the url
+var address = 'http://contactus27.xyz/LAMPAPI';
+var extension = '.php';
+var loginAddress = '/Login';
+var contactAddress = '/AddContact';
+var searchAddress = '/SearchContacts';
+
+// Variables regarding the user
+var userID = 0;
+var firstName = "";
+var lastName = "";
+
+// Function to log in
+function login() {
+    // Initializes variables
+    userID = 0;
+    firstName = "";
+    lastName = "";
+
+    // Obtains username and password from approriate id tag
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    
+    // Initializes result
+    document.getElementById("result").innerHTML = "";
+
+    // Initializes the json payload and loads the url
+    var jsonPayload = '{"login : "' + username + '", "password" : "' + password + '"}';
+    var url = address + loginAddress + extension;
+
+    // xhr = XMLHttpRequest
+    var xhr = new XMLHttpRequest();
+    // Initializes the newly created request
+    xhr.open("POST", url, true);
+    // Sets the value of the HTTP header (header, value)
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+        xhr.onreadystatechange = function() {
+            // If request is finished and response is correct
+            if(this.readyState == 4 && this.status == 200) {
+                // Processes the JSON string and assigns server response
+                var jsonObject = JSON.parse(xhr.responseText);
+                // Assigns the id from the obtained server response to the user id
+                userID = jsonObject.id;
+
+                // If id invalid, return
+                if(userID < 1) {
+                    document.getElementById("result").innerHTML = "Username or Password is invalid";
+                    return;
+                }
+
+                // Assigns first name and last name from server response
+                firstName = jsonObject.firstName;
+                lastName = jsonObject.lastName;
+
+                // Executes save cookie function to store user session
+                saveCookie();
+
+                // Redirects to home.html
+                window.location.href = "home.html";
+            }
+        };
+        // Sends the request to the server
+        xhr.send(jsonPayload);
+    }
+    catch(err) {
+        // Throws error message in id result
+        document.getElementById("result").innerHTML = err.meessage;
+    }
+}
+
+// Function to validate registration fields
+function registrationValidation() {
+    
+}
+
+// Function to save cookie from server info
+function saveCookie() {
+    var minutes = 20;
+    var date = new Date();
+
+    date.setTime(date.getTime()+(minutes*60*1000));
+
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+}
+
+// Reads the cookie to verify user
+function readCookie()
+{
+	userId = -1;
+	var data = document.cookie;
+	var splits = data.split(",");
+
+	for(var i = 0; i < splits.length; i++) 
+	{
+		var thisOne = splits[i].trim();
+		var tokens = thisOne.split("=");
+
+		if( tokens[0] == "firstName" ) {
+			firstName = tokens[1];
+		}
+
+		else if( tokens[0] == "lastName" ) {
+			lastName = tokens[1];
+		}
+		else if( tokens[0] == "userId" ) {
+			userId = parseInt( tokens[1].trim() );
+		}
+	}
+	
+	if( userId < 0 ) {
+		window.location.href = "index.html";
+	}
+	else {
+		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+	}
+}
+
+// Function to log the user out
+function logout() {
+    userId = 0;
+	firstName = "";
+	lastName = "";
+	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+	window.location.href = "index.html";
+}
+
+// Function to add a contact
+function addContact() {
+    var newContact = document.getElementById("contactText").value;
+    document.getElementById("contactAddResult").innerHTML = "";
+
+    var jsonPayload = '{"contact" : "' + newContact + '", "userId" : ' + userId + '}';
+	var url = address + contactAddress + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try	{
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("addResult").innerHTML = "Contact has been added";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err) {
+		document.getElementById("addResult").innerHTML = err.message;
+	}
+}
+
+// Function to search contacts
+function searchContacts() {
+    var search = document.getElementById("searchText").value;
+    document.getElementById("searchResult").innerHTML = "";
+
+    var contactList = "";
+
+    var jsonPayload = '{"search" : "' + search + '","userId" : ' + userId + '}';
+	var url = address + '/SearchContacts' + extension;
+
+    var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try {
+		xhr.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				var jsonObject = JSON.parse( xhr.responseText );
+				
+				for( var i=0; i<jsonObject.results.length; i++ ) {
+					colorList += jsonObject.results[i];
+					if( i < jsonObject.results.length - 1 )	{
+						colorList += "<br />\r\n";
+					}
+				}
+				
+				document.getElementsByTagName("p")[0].innerHTML = colorList;
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err) {
+		document.getElementById("colorSearchResult").innerHTML = err.message;
+	}
+
+}
