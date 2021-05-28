@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <!-- Including Bootstrap for quick, easy, and clean looking CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <!-- Linking to styles.css -->
+        <!-- Used for styling -->
+        <link href="css/styles.css" rel="stylesheet">
+
+        <!-- Linking to register.js -->
+        <!-- Used to provide functionality -->
+        <script type="text/javascript" src="js/code.js"></script>
+
+        <!-- Linking to md5.js -->
+        <!-- Used to provide encryption -->
+        <!-- Omitted for the time being -->
+
+        <!-- Immediately reads the cookie once HTML has loaded -->
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                readCookie();
+            }, false);
+        </script>
+
+        <title>Homepage</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1 style="text-align: center;">Welcome to Group 27's Contact Manager</h1>
+                <p>Hey! You're not suppose to be here yet!</p>
+
+                <!-- Remove this -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="row justify-content-end">
+                <div class="col-4">
+                    <p>Username: <span id="username"></span></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,1 +1,8 @@
-/* Place CSS style here */
+body {
+    color: white;
+    background-color: grey;
+}
+
+.row {
+    margin-top: 5%;
+}
