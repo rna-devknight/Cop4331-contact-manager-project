@@ -54,10 +54,10 @@ Objective: Develop a contact mananger web app.
 ### Useful Resources
 
 For learning HTML, CSS, javascript, php, bootstrap, and more.
-- [w3schools](https://www.w3schools.com/)
+- [W3Schools](https://www.w3schools.com/)
 
 For learning how to use bootstrap.
-- [bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+- [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 
 For learning how to make github READMEs nicer.
 - [Editor.md](https://pandao.github.io/editor.md/en.html)
