@@ -49,7 +49,7 @@ Objective: Develop a contact mananger web app.
 - [ ] Setup password recovery
 
 ### Database Entity Relationship Diagram (ERD)
-![](https://cdn.discordapp.com/attachments/844984336586375250/847205904894132314/ERD_Type.PNG)
+![](https://github.com/mina21Beshay/Cop4331-contact-manager-project/blob/main/images/ERD_Type.png?raw=true)
 
 ### Useful Resources
 
