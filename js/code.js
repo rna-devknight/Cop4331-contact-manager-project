@@ -62,7 +62,7 @@ function login() {
                 window.location.href = "home.html";
             }
         };
-		
+
         // Sends the request to the server
         xhr.send(jsonPayload);
     }
@@ -72,17 +72,33 @@ function login() {
     }
 }
 
+// Function to provide immediate password confirmation
+function check() {
+	// Obtains the two passwords
+	var pw1 = document.getElementById("password").value;
+	var pw2 = document.getElementById("passwordConfirmation").value;
+
+	if(pw1 != pw2) {
+		document.getElementById("result").innerHTML = "Passwords do not match.";
+	}
+	else {
+		document.getElementById("result").innerHTML = "Passwords match.";
+	}
+}
+
+
 // Function to validate registration fields
 function validate() {
 	// Obtains the two passwords
     var pw1 = document.getElementById("password").value;
 	var pw2 = document.getElementById("passwordConfirmation").value;
 
-	if(pw != pw2) {
+	if(pw1 != pw2) {
 		document.getElementById("result").innerHTML = "Passwords do not match.";
 	}
-
-	register();
+	else {
+		register();
+	}
 }
 
 // Function to save cookie from server info
