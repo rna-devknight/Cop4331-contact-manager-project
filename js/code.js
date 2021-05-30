@@ -4,6 +4,7 @@ var extension = '.php';
 var loginAddress = '/Login';
 var contactAddress = '/AddContact';
 var searchAddress = '/SearchContacts';
+var registerAddress = '/Register';
 
 // Variables regarding the user
 var userID = 0;
@@ -61,6 +62,7 @@ function login() {
                 window.location.href = "home.html";
             }
         };
+		
         // Sends the request to the server
         xhr.send(jsonPayload);
     }
@@ -71,8 +73,16 @@ function login() {
 }
 
 // Function to validate registration fields
-function registrationValidation() {
-    
+function validate() {
+	// Obtains the two passwords
+    var pw1 = document.getElementById("password").value;
+	var pw2 = document.getElementById("passwordConfirmation").value;
+
+	if(pw != pw2) {
+		document.getElementById("result").innerHTML = "Passwords do not match.";
+	}
+
+	register();
 }
 
 // Function to save cookie from server info
@@ -187,4 +197,56 @@ function searchContacts() {
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 
+}
+
+// Function to register
+function register() {
+	// Obtain values from the form
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	var firstName = document.getElementById("firstName").value;
+	var lastName = document.getElementById("lastName").value;
+
+	// Initializes result
+    document.getElementById("result").innerHTML = "";
+
+	// Initializes the json payload and loads the url
+    var jsonPayload = '{"login : "' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
+    var url = address + registerAddress + extension;
+
+	// xhr = XMLHttpRequest
+	var xhr = new XMLHttpRequest();
+	// Initializes the newly created request
+	xhr.open("POST", url, true);
+	// Sets the value of the HTTP header (header, value)
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try {
+        xhr.onreadystatechange = function() {
+            // If request is finished and response is correct
+            if(this.readyState == 4 && this.status == 200) {
+                // Processes the JSON string and assigns server response
+                // var jsonObject = JSON.parse(xhr.responseText);
+                // Assigns the id from the obtained server response to the user id
+                // userID = jsonObject.id;
+
+				// Delete this
+                // If id invalid, return
+                // if(userID < 1) {
+                //     document.getElementById("result").innerHTML = "Username or Password is invalid";
+                //     return;
+                // }
+
+                // Redirects to index.html
+                window.location.href = "index.html";
+            }
+        };
+
+        // Sends the request to the server
+        xhr.send(jsonPayload);
+    }
+    catch(err) {
+        // Throws error message in id result
+        document.getElementById("result").innerHTML = err.meessage;
+    }
 }
