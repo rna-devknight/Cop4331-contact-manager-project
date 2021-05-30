@@ -19,11 +19,146 @@
         <!-- Used to provide encryption -->
         <!-- Omitted for the time being -->
 
+        <!-- Script for client-side form validation -->
+		<!-- Source: https://getbootstrap.com/docs/4.0/components/forms/#validation -->
+		<script>
+			(function() {
+				'use strict';
+				window.addEventListener('load', function() {
+					// Fetch all the forms to apply custom Bootstrap validation styles to
+					var forms = document.getElementsByClassName('needs-validation');
+					// Loop over them and prevent submission
+					var validation = Array.prototype.filter.call(forms, function(form) {
+				
+						form.addEventListener('submit', function(event) {
+						if (form.checkValidity() === false) {
+						event.preventDefault();
+						event.stopPropagation();
+						}
+						form.classList.add('was-validated');
+					}, false);
+					});
+				}, false);
+				})();
+		</script>
+
         <title>Registration</title>
     </head>
 
     <body>
-        <h1 style="text-align: center;">Welcome to Group 27's Contact Manager's Registration Page</h1>
+		<div class="container">
+			<!-- Row one, contains the title -->
+			<div class="row">
+				<h1 style="text-align: center;">Welcome to Group 27's Contact Manager's Registration Page</h1>
+				<h5 style="text-align: center;">Website under development, please do not use.</h5>
+			</div>
+
+			<!-- Row two, contains the login form -->
+			<div class ="row justify-content-center pt-4">
+				<!-- Bootstrap column containing the form. Styled to be centered -->
+				<div class="col-4 align-self-center">
+					<!-- Login form, has client side validation to prevent empty submissions -->
+					<form class="needs-validation" action="/js/code.js" novalidate>
+						<legend>Please input your credentials to register: </legend>
+
+                        <!-- First name input row -->
+						<div class="form-group row pb-2">
+							<label for="firstName" class="col-sm-3 col-form-label">First Name:</label>
+							
+							<div class="col-sm-9">
+								<input type="text" id="firstName" class="form-control" placeholder="Bob" aria-label="firstName" aria-describedby="basic-addon1" required>
+							
+								<div class="invalid-feedback">
+									Cannot be blank, please input a valid name.
+								</div>
+							</div>
+						</div>
+
+                        <!-- Last name input row -->
+						<div class="form-group row pb-2">
+							<label for="lastName" class="col-sm-3 col-form-label">Last Name:</label>
+							
+							<div class="col-sm-9">
+								<input type="text" id="lastName" class="form-control" placeholder="The Builder" aria-label="lastName" aria-describedby="basic-addon1" required>
+							
+								<div class="invalid-feedback">
+									Cannot be blank, please input a valid last name.
+								</div>
+							</div>
+						</div>
+					
+						<!-- Username input row -->
+						<div class="form-group row pb-2">
+							<label for="username" class="col-sm-3 col-form-label">Username:</label>
+							
+							<div class="col-sm-9">
+								<input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+							
+								<div class="invalid-feedback">
+									Cannot be blank, please input a valid username.
+								</div>
+							</div>
+						</div>
+						
+						<!-- Password input row -->
+						<div class="form-group row pt-2 pb-2">
+							<label for="password" class="col-sm-3 col-form-label">Password:</label>
+							
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="password" placeholder="********" required>				
+							
+								<div class="invalid-feedback">
+									Cannot be blank, please input a valid password.
+								</div>
+							</div>
+						</div>
+
+                        <!-- Password Confirmation input row -->
+						<div class="form-group row pt-2 pb-2">
+							<label for="passwordConfirmation" class="col-sm-3 col-form-label">Confirm Password:</label>
+							
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="passwordConfirmation" placeholder="********" required>				
+							
+								<div class="invalid-feedback">
+									Cannot be blank, please input a valid password.
+								</div>
+							</div>
+						</div>
+
+						<!-- Submission button -->
+						<fieldset>
+							<div class="form-group row pt-2 pb-4">
+								<button type="login" id="login" class="btn btn-primary btn-block" onclick="login();">Login</button>
+							</div>
+						</fieldset>					
+					</form>
+					<!-- Displays the result of the submission -->
+					<span id="result"></span>
+				</div>
+			</div>
+
+			<!-- Row three, contains additional functionality -->
+			<div class="row justify-content-center pt-4">
+				<!-- Button for password recovery. May not be implemented-->
+				<div class="col-2">
+					<a class="btn btn-primary btn-md disabled" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="link-info">Don't forget your password! Recovering currently unavailable.</a>
+				</div>
+
+				<!-- Button for registration -->
+				<div class="col-2">
+					<a class="btn btn-outline-warning btn-md" href="/register.html" class="link-info">Register</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Required Bootstrap scripts -->
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+
+	</body>
+</html>
+        
         
     </body>
 </html>
