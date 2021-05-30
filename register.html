@@ -58,7 +58,7 @@
 				<!-- Bootstrap column containing the form. Styled to be centered -->
 				<div class="col-6 align-self-center">
 					<!-- Login form, has client side validation to prevent empty submissions -->
-					<form class="needs-validation" action="/js/code.js" novalidate>
+					<form class="needs-validation" novalidate>
 						<legend>Please input your credentials to register: </legend>
 
                         <!-- First name input row -->
@@ -118,7 +118,7 @@
 							<label for="passwordConfirmation" class="col-sm-3 col-form-label">Confirm Password:</label>
 							
 							<div class="col-sm-9">
-								<input type="password" class="form-control" id="passwordConfirmation" placeholder="********" required>				
+								<input type="password" class="form-control" id="passwordConfirmation" placeholder="********" onkeyup="check();" required>				
 							
 								<div class="invalid-feedback">
 									Cannot be blank, please input a valid password.
@@ -129,7 +129,7 @@
 						<!-- Submission button -->
 						<fieldset>
 							<div class="form-group row pt-2 pb-4">
-								<button type="login" id="login" class="btn btn-primary btn-block" onclick="register();">Sign Up</button>
+								<button type="login" id="login" class="btn btn-primary btn-block" onclick="validate();">Sign Up</button>
 							</div>
 						</fieldset>					
 					</form>
@@ -139,7 +139,7 @@
 			</div>
 
 			<!-- Row three, contains additional functionality -->
-			<div class="row justify-content-center">
+			<div class="row justify-content-center pt-2">
                 <!-- Button to go back to index.html -->
                 <div class="col-6 align-self-start">
                     <a class="btn btn-warning btn-lg" href="/index.html" role="button">
