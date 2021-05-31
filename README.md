@@ -26,7 +26,7 @@ Objective: Develop a contact mananger web app.
 	- [ ] Registration API
 	- [ ] Create API
 	- [ ] Search API
-	- [ ] Update API
+	- [X] Update API
 	- [ ] Delete API
 - [ ] Test APIs
 	- [ ] Login API
@@ -35,9 +35,9 @@ Objective: Develop a contact mananger web app.
 	- [ ] Search API
 	- [ ] Update API
 	- [ ] Delete API
-- [ ] Finialize HTML pages
+- [X] Finialize HTML pages
 	- [X] register.html
-	- [ ] home.html
+	- [X] home.html
 	- [X] index.html
 - [ ] Integrate front end with back end
 	- [ ] register.html
