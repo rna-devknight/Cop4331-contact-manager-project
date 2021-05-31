@@ -143,6 +143,14 @@ function readCookie()
 	}
 }
 
+// Function to display a greeting to the user
+window.onload = function greet() {
+	var message = "Welcome ";
+	var messageEnd = "!";
+
+	document.getElementById("welcome").innerHTML = message + firstName + " " + lastName + messageEnd;
+}
+
 // Function to log the user out
 function logout() {
     userId = 0;
