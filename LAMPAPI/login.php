@@ -21,6 +21,8 @@
   define('USERID_COLUMN_NAME', 'user_id');
   define('FIRSTNAME_COLUMN_NAME', 'first_name');
   define('LASTNAME_COLUMN_NAME', 'last_name');
+  define('USERNAME_COLUMN_NAME', 'username');
+  define('PASSWORD_COLUMN_NAME', 'password');
 
   // FRONTEND LOGIN PAGE INFO
   define('USERNAME_FIELD_ID', 'username');
@@ -96,7 +98,8 @@
   }
 
   $mysql_select_query_str = "SELECT ".USERID_COLUMN_NAME.", ".FIRSTNAME_COLUMN_NAME.", ".
-    LASTNAME_COLUMN_NAME." FROM ".PRIMARY_TABLE_NAME." WHERE username = ? AND password = ?";
+    LASTNAME_COLUMN_NAME." FROM ".PRIMARY_TABLE_NAME." WHERE ".
+    USERNAME_COLUMN_NAME." = ? AND ".PASSWORD_COLUMN_NAME." = ?";
   $query_statement = $database->prepare($mysql_select_query_str);
   $query_statement->bind_param('ss', $username_input_str, $password_input_str);
 
@@ -132,7 +135,7 @@
   $firstname_str = $row_assoc_array[FIRSTNAME_COLUMN_NAME];
   $lastname_str = $row_assoc_array[LASTNAME_COLUMN_NAME];
 
-  send_json_response_packet(true, $userid_int, $firstname_str, $lastname_str, "No error");
+  send_json_response_packet(true, $userid_int, $firstname_str, $lastname_str, 'No error');
 
   $result_set_obj->close();
   $query_statement->close();
