@@ -22,11 +22,11 @@ Objective: Develop a contact mananger web app.
 - [x] Create CSS stylesheet
 - [x] Create login database
 - [ ] Create APIs
-	- [ ] Login API
+	- [X] Login API
 	- [ ] Registration API
 	- [ ] Create API
 	- [ ] Search API
-	- [ ] Update API
+	- [X] Update API
 	- [ ] Delete API
 - [ ] Test APIs
 	- [ ] Login API
@@ -35,16 +35,16 @@ Objective: Develop a contact mananger web app.
 	- [ ] Search API
 	- [ ] Update API
 	- [ ] Delete API
-- [ ] Finialize HTML pages
-	- [ ] register.html
-	- [ ] home.html
-	- [ ] index.html
+- [X] Finialize HTML pages
+	- [X] register.html
+	- [X] home.html
+	- [X] index.html
 - [ ] Integrate front end with back end
 	- [ ] register.html
 	- [ ] home.html
 	- [ ] index.html
 - [ ] Database with sample data
-- [ ] Setup www.contactus27.xyz
+- [X] Setup www.contactus27.xyz
 - [ ] Setup encryption
 - [ ] Setup password recovery
 
