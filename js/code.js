@@ -26,7 +26,7 @@ function login() {
     document.getElementById("result").innerHTML = "";
 
     // Initializes the json payload and loads the url
-    var jsonPayload = '{"login : "' + username + '", "password" : "' + password + '"}';
+    var jsonPayload = '{"login" : "' + username + '", "password" : "' + password + '"}';
     var url = address + loginAddress + extension;
 
     // xhr = XMLHttpRequest
@@ -236,7 +236,7 @@ function register() {
     document.getElementById("result").innerHTML = "";
 
 	// Initializes the json payload and loads the url
-    var jsonPayload = '{"login : "' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
+    var jsonPayload = '{"login" : ' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
     var url = address + registerAddress + extension;
 
 	// xhr = XMLHttpRequest
