@@ -29,8 +29,8 @@
   define('PASSWORD_FIELD_ID', 'userpw');
 
   // ASSOCIATIVE ATTRIBUTE NAMES FROM FRONTEND'S JSON REQUEST PACKET
-  // EXPECTING: {"username" : "some_username", "password" : "some_password"}
-  define('USERNAME_ASSOCIATIVE_NAME', 'username');
+  // EXPECTING: {"login" : "some_username", "password" : "some_password"}
+  define('USERNAME_ASSOCIATIVE_NAME', 'login');
   define('PASSWORD_ASSOCIATIVE_NAME', 'password');
 
   // ERROR MESSAGES
