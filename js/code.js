@@ -1,10 +1,10 @@
 // Easily modifiable variables for the url
 var address = 'http://contactus27.xyz/LAMPAPI';
 var extension = '.php';
-var loginAddress = '/Login';
+var loginAddress = '/login';
 var contactAddress = '/AddContact';
 var searchAddress = '/SearchContacts';
-var registerAddress = '/Register';
+var registerAddress = '/registration';
 
 // Variables regarding the user
 var userID = 0;
@@ -23,7 +23,7 @@ function login() {
     var password = document.getElementById("password").value;
     
     // Initializes result
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").innerHTML = "Processing, please wait...";
 
     // Initializes the json payload and loads the url
     var jsonPayload = '{"login" : "' + username + '", "password" : "' + password + '"}';
@@ -43,7 +43,7 @@ function login() {
                 // Processes the JSON string and assigns server response
                 var jsonObject = JSON.parse(xhr.responseText);
                 // Assigns the id from the obtained server response to the user id
-                userID = jsonObject.id;
+                userID = jsonObject.user_id_int;
 
                 // If id invalid, return
                 if(userID < 1) {
@@ -52,12 +52,15 @@ function login() {
                 }
 
                 // Assigns first name and last name from server response
-                firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
+                firstName = jsonObject.first_name_str;
+                lastName = jsonObject.last_name_str;
 
                 // Executes save cookie function to store user session
                 saveCookie();
 
+				// Displays confirmation message
+				document.getElementById("result").innerHTML = "Success!";
+				
                 // Redirects to home.html
                 window.location.href = "home.html";
             }
@@ -108,7 +111,7 @@ function saveCookie() {
 
     date.setTime(date.getTime()+(minutes*60*1000));
 
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userID + ";expires=" + date.toGMTString();
 }
 
 // Reads the cookie to verify user
