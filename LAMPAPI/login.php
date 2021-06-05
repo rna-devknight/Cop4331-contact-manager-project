@@ -13,7 +13,7 @@
   define('DB_PASSWORD', 'Selcouth');
   define('DATABASE_NAME', 'contactus27');
 
-  // DATABASE INFORMATION
+  // DATABASE TABLE INFORMATION
   define('PRIMARY_TABLE_NAME', 'Users');
   define('SECONDARY_TABLE_NAME', 'Contact');
 
