@@ -8,9 +8,11 @@
 	$contactId = 0;
 	$userId = $inData["user_id"];
 	$firstName = $inData["first_name"];
+	$lastName = $inData["last_name"];
 	$phoneNumber = $inData["phone_num"];
 	$email = $inData["email"];
-	$dateRecord = date("Y.m.d");
+	date_default_timezone_set('UTC');
+	$dateRecord = date("m-d-Y");
 
 	$conn = new mysqli("contactus27.ccfnvwijsws5.us-east-2.rds.amazonaws.com",
 	 									 "root",
@@ -22,22 +24,14 @@
 	}
 	else
 	{
-		$id = $conn->prepare("SELECT MAX(contact_id) AS max_val FROM Contact WHERE user_id=?");
-		$id->bind_param("s", $userId);
-		$id->execute();
-		$index = $id->get_result()->$max_val;
-		$id->close();
+		$add = "INSERT into Contacts (first_name, last_name, user_id, phone_num, email, date_record)
+		VALUES('$firstName','$lastName','$userId','$phone_num'),'$email','$dateRecord'";
+		if(mysqli_query($conn, $add)){
+    echo "Records added successfully.";
+} else{
+    echo "ERROR: Could not able to execute $add. " . mysqli_error($conn);
+}
 
-		if($index == null)
-		{
-			$index = -1;
-		}
-		$index = $index + 1;
-
-		$add = $conn->prepare("INSERT into Contact (contact_id, first_name, phone_num, email, date_record, user_id) VALUES(?,?,?,?,?,?)");
-		$add->bind_param("sssssss", $index, $firstName, $phoneNumber, $email, $dateRecord, $userId);
-		$add->execute();
-		$add->close();
 
 		$conn->close();
 		returnWithError("");
