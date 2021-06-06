@@ -58,83 +58,81 @@
 				<!-- Bootstrap column containing the form. Styled to be centered -->
 				<div class="col-6 align-self-center">
 					<!-- Login form, has client side validation to prevent empty submissions -->
-					<form class="needs-validation" novalidate>
-						<legend>Please input your credentials to register: </legend>
+					<h5>Please input your credentials to register: </h5>
 
-                        <!-- First name input row -->
-						<div class="form-group row pb-2">
-							<label for="firstName" class="col-sm-3 col-form-label">First Name:</label>
-							
-							<div class="col-sm-9">
-								<input type="text" id="firstName" class="form-control" placeholder="Bob" aria-label="firstName" aria-describedby="basic-addon1" required>
-							
-								<div class="invalid-feedback">
-									Cannot be blank, please input a valid name.
-								</div>
-							</div>
-						</div>
-
-                        <!-- Last name input row -->
-						<div class="form-group row pb-2">
-							<label for="lastName" class="col-sm-3 col-form-label">Last Name:</label>
-							
-							<div class="col-sm-9">
-								<input type="text" id="lastName" class="form-control" placeholder="The Builder" aria-label="lastName" aria-describedby="basic-addon1" required>
-							
-								<div class="invalid-feedback">
-									Cannot be blank, please input a valid last name.
-								</div>
-							</div>
-						</div>
-					
-						<!-- Username input row -->
-						<div class="form-group row pb-2">
-							<label for="username" class="col-sm-3 col-form-label">Username:</label>
-							
-							<div class="col-sm-9">
-								<input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
-							
-								<div class="invalid-feedback">
-									Cannot be blank, please input a valid username.
-								</div>
-							</div>
-						</div>
+					<!-- First name input row -->
+					<div class="form-group row pb-2">
+						<label for="firstName" class="col-sm-3 col-form-label">First Name:</label>
 						
-						<!-- Password input row -->
-						<div class="form-group row pt-2 pb-2">
-							<label for="password" class="col-sm-3 col-form-label">Password:</label>
-							
-							<div class="col-sm-9">
-								<input type="password" class="form-control" id="password" placeholder="********" required>				
-							
-								<div class="invalid-feedback">
-									Cannot be blank, please input a valid password.
-								</div>
+						<div class="col-sm-9">
+							<input type="text" id="firstName" class="form-control" placeholder="Bob" aria-label="firstName" aria-describedby="basic-addon1" required>
+						
+							<div class="invalid-feedback">
+								Cannot be blank, please input a valid name.
 							</div>
 						</div>
+					</div>
 
-                        <!-- Password Confirmation input row -->
-						<div class="form-group row pt-2 pb-2">
-							<label for="passwordConfirmation" class="col-sm-3 col-form-label">Confirm Password:</label>
-							
-							<div class="col-sm-9">
-								<input type="password" class="form-control" id="passwordConfirmation" placeholder="********" onkeyup="check();" required>				
-							
-								<div class="invalid-feedback">
-									Cannot be blank, please input a valid password.
-								</div>
+					<!-- Last name input row -->
+					<div class="form-group row pb-2">
+						<label for="lastName" class="col-sm-3 col-form-label">Last Name:</label>
+						
+						<div class="col-sm-9">
+							<input type="text" id="lastName" class="form-control" placeholder="The Builder" aria-label="lastName" aria-describedby="basic-addon1" required>
+						
+							<div class="invalid-feedback">
+								Cannot be blank, please input a valid last name.
 							</div>
 						</div>
-
-						<!-- Submission button -->
-						<fieldset>
-							<div class="form-group row pt-2 pb-4">
-								<button type="login" id="login" class="btn btn-primary btn-block" onclick="validate();">Sign Up</button>
+					</div>
+				
+					<!-- Username input row -->
+					<div class="form-group row pb-2">
+						<label for="username" class="col-sm-3 col-form-label">Username:</label>
+						
+						<div class="col-sm-9">
+							<input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+						
+							<div class="invalid-feedback">
+								Cannot be blank, please input a valid username.
 							</div>
-						</fieldset>					
-					</form>
+						</div>
+					</div>
+					
+					<!-- Password input row -->
+					<div class="form-group row pt-2 pb-2">
+						<label for="password" class="col-sm-3 col-form-label">Password:</label>
+						
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="password" placeholder="********" required>				
+						
+							<div class="invalid-feedback">
+								Cannot be blank, please input a valid password.
+							</div>
+						</div>
+					</div>
+
+					<!-- Password Confirmation input row -->
+					<div class="form-group row pt-2 pb-2">
+						<label for="passwordConfirmation" class="col-sm-3 col-form-label">Confirm Password:</label>
+						
+						<div class="col-sm-9">
+							<input type="password" class="form-control" id="passwordConfirmation" placeholder="********" onkeyup="check();" required>				
+						
+							<div class="invalid-feedback">
+								Cannot be blank, please input a valid password.
+							</div>
+						</div>
+					</div>
+
+					<!-- Submission button -->
+					<div class="form-group row pt-2 pb-4">
+						<button type="button" id="registration" class="btn btn-primary btn-block" onclick="validate();">Sign Up</button>
+					</div>
+
 					<!-- Displays the result of the submission -->
 					<span id="result"></span>
+
 				</div>
 			</div>
 
