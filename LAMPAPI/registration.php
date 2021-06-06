@@ -25,9 +25,9 @@
   define('PASSWORD_COLUMN_NAME', 'password');
 
   // ASSOCIATIVE ATTRIBUTE NAMES FROM FRONTEND'S JSON REQUEST PACKET
-  define('FIRST_NAME_ASSOC_NAME', 'first_name');
-  define('LAST_NAME_ASSOC_NAME', 'last_name');
-  define('DESIRED_USERNAME_ASSOC_NAME', 'username');
+  define('FIRST_NAME_ASSOC_NAME', 'firstName');
+  define('LAST_NAME_ASSOC_NAME', 'lastName');
+  define('DESIRED_USERNAME_ASSOC_NAME', 'login');
   define('DESIRED_PASSWORD_ASSOC_NAME', 'password');
 
   // ERROR MESSAGES
@@ -40,7 +40,7 @@
     " upon database query");
   define('ID_RETRIEVAL_FAIL_MSG2', "Registration was successful but userID retrieval failed".
     " upon accessing the corresponding table row");
-  define('REGISTRATION_ERROR_MSG', "Registration failed: desired username and password ".
+  define('REGISTRATION_ERROR_MSG', "Registration failed: desired username and/or password ".
     "has already been taken");
 
   /*********************************** END SCRIPT CONSTANTS **************************************/
@@ -52,12 +52,19 @@
   class registration_response_packet
   {
     public $success_boolean; // 'true' FOR SUCCESSFUL REGISTRATION, 'false' OTHERWISE
+    public $username_was_taken_boolean; // 'true' IF REGISTRATION FAILED B/C USERNAME WAS TAKEN,
+                                        // 'false' OTHERWISE
+    public $password_was_taken_boolean; // 'true' IF REGISTRATION FAILED B/C PASSWORD WAS TAKEN,
+                                        // 'false' OTHERWISE
     public $user_id_int; // CLIENT'S USER ID COLUMN IN THE DATABASE
     public $error_msg_str; // DESCRIBE FAILURE WHEN 'success_boolean' IS FALSE
 
-    function __construct($success_bool, $userid_int, $error_str)
+    function __construct($success_bool, $usrname_taken_bool, $pwd_taken_bool, $userid_int,
+      $error_str)
     {
       $this->success_boolean = $success_bool;
+      $this->username_was_taken_boolean = $usrname_taken_bool;
+      $this->password_was_taken_boolean = $pwd_taken_bool;
       $this->user_id_int = $userid_int;
       $this->error_msg_str = $error_str;
     }
@@ -78,7 +85,7 @@
   // IF CONNECTION COULD NOT BE MADE
   if($database->connect_errno != 0)
   {
-    send_json_response_packet(false, NULL, CONNECTION_ERROR_MSG);
+    send_json_response_packet(false, false, false, NULL, CONNECTION_ERROR_MSG);
     exit;
   }
 
@@ -93,20 +100,21 @@
   if($username_input_str == NULL || $password_input_str == NULL ||
     $firstname_input_str == NULL ||  $lastname_input_str == NULL)
   {
-    send_json_response_packet(false, NULL, ASSOCIATIVE_ARRAY_ERROR_MSG);
+    send_json_response_packet(false, false, false, NULL, ASSOCIATIVE_ARRAY_ERROR_MSG);
     $database->close();
     exit;
   }
 
-  $mysql_select_query_str = "SELECT ".USERID_COLUMN_NAME." FROM ".PRIMARY_TABLE_NAME.
-    " WHERE ".USERNAME_COLUMN_NAME." = ? AND ".PASSWORD_COLUMN_NAME." = ?";
+  $mysql_select_query_str = "SELECT ".USERID_COLUMN_NAME.", ".USERNAME_COLUMN_NAME.", "
+    .PASSWORD_COLUMN_NAME." FROM ".PRIMARY_TABLE_NAME.
+    " WHERE ".USERNAME_COLUMN_NAME." = ? OR ".PASSWORD_COLUMN_NAME." = ?";
   $query_statement = $database->prepare($mysql_select_query_str);
   $query_statement->bind_param('ss', $username_input_str, $password_input_str);
 
   // IF DATABASE QUERY WAS NOT EXECUTED SUCCESSFULLY
   if( !($query_statement->execute()) )
   {
-    send_json_response_packet(false, NULL, DATABASE_QUERY_ERROR_MSG);
+    send_json_response_packet(false, false, false, NULL, DATABASE_QUERY_ERROR_MSG);
     $query_statement->close();
     $database->close();
     exit;
@@ -128,15 +136,25 @@
     $new_userid = enter_client_into_database($firstname_input_str, $lastname_input_str,
       $username_input_str, $password_input_str, $database);
 
-    send_json_response_packet(true, $new_userid, 'No error');
+    send_json_response_packet(true, false, false, $new_userid, 'No error');
     $database->close();
     exit;
   }
 
   // AT THIS POINT, IT CAN BE ASSUMED THAT THE DATABASE ALREADY HAS AN ENTRY WITH THE...
-  // ...SAME USERNAME AND PASSWORD IN THE PRIMARY USERS TABLE
+  // ...SAME USERNAME OR SAME PASSWORD IN THE PRIMARY USERS TABLE
 
-  send_json_response_packet(false, -1234, REGISTRATION_ERROR_MSG);
+  $username_was_taken_boolean = is_username_taken($row_assoc_array, $username_input_str,
+    $result_set_obj);
+
+  $result_set_obj->data_seek(0); // RESET RESULT POINTER BACK TO FIRST ROW IN RESULT SET
+  $row_assoc_array = $result_set_obj->fetch_assoc();
+
+  $password_was_taken_boolean = is_password_taken($row_assoc_array, $password_input_str,
+    $result_set_obj);
+
+  send_json_response_packet(false, $username_was_taken_boolean, $password_was_taken_boolean,
+    -1234, REGISTRATION_ERROR_MSG);
 
   $result_set_obj->close();
   $query_statement->close();
@@ -148,13 +166,14 @@
   |  USER-DEFINED FUNCTIONS  |
   ***************************/
 
-  function send_json_response_packet($success_bool, $userid_int, $error_str)
+  function send_json_response_packet($success_bool, $usrname_taken_bool, $pwd_taken_bool,
+    $userid_int, $error_str)
   {
     // SEND HTML HEADER FIRST BEFORE CONTENT
     header('Content-type: application/json');
 
-    $response_packet_obj = new registration_response_packet($success_bool, $userid_int,
-      $error_str);
+    $response_packet_obj = new registration_response_packet($success_bool, $usrname_taken_bool,
+      $pwd_taken_bool, $userid_int, $error_str);
 
     $json_response_str = json_encode($response_packet_obj);
 
@@ -177,7 +196,7 @@
     // IF DATABASE QUERY WAS NOT EXECUTED SUCCESSFULLY
     if( !($query_statement->execute()) )
     {
-      send_json_response_packet(false, NULL, INSERT_QUERY_ERROR_MSG);
+      send_json_response_packet(false, false, false, NULL, INSERT_QUERY_ERROR_MSG);
       $query_statement->close();
       $db->close();
       exit;
@@ -205,7 +224,7 @@
     // IF DATABASE QUERY WAS NOT EXECUTED SUCCESSFULLY
     if( !($query_statement->execute()) )
     {
-      send_json_response_packet(false, NULL, ID_RETRIEVAL_FAIL_MSG1);
+      send_json_response_packet(false, false, false, NULL, ID_RETRIEVAL_FAIL_MSG1);
       $query_statement->close();
       $db->close();
       exit;
@@ -221,7 +240,7 @@
     // IF NO ROW IN THE DATABASE TABLE MATCHED THE SELECT QUERY  
     if($row_assoc_array == NULL)
     {
-      send_json_response_packet(false, NULL, ID_RETRIEVAL_FAIL_MSG2);
+      send_json_response_packet(false, false, false, NULL, ID_RETRIEVAL_FAIL_MSG2);
       $result_set_obj->close();
       $query_statement->close();
       $db->close();
@@ -237,6 +256,68 @@
     $query_statement->close();
 
     return $userid_int;
+  }
+
+  /************************************** NEXT FUNCTION ******************************************/
+
+  // RETURNS BOOLEAN
+  // RETURNS 'true' IF USERNAME WAS TAKEN, 'false' OTHERWISE
+  // ASSUMES THAT THE PASSED 'row_assoc_array' REPRESENTS A VALID ROW IN THE DATABASE
+  function is_username_taken(&$row_assoc_array, $username_input_str, &$result_set_obj)
+  {
+    if( strcasecmp($row_assoc_array[USERNAME_COLUMN_NAME], $username_input_str) == 0 )
+    {
+      return true;
+    }
+
+    // GO THROUGH ANY OTHER POSSIBLE ROWS IN THE RESULT SET
+    do
+    {
+      $row_assoc_array = $result_set_obj->fetch_assoc();
+
+      // IF THERE IS ANOTHER ROW TO CHECK
+      if($row_assoc_array != NULL)
+      {
+        if( strcasecmp($row_assoc_array[USERNAME_COLUMN_NAME], $username_input_str) == 0 )
+        {
+          return true;
+        }
+      }
+    }
+    while($row_assoc_array != NULL);
+
+    return false;
+  }
+
+  /************************************** NEXT FUNCTION ******************************************/
+
+  // RETURNS BOOLEAN
+  // RETURNS 'true' IF PASSWORD WAS TAKEN, 'false' OTHERWISE
+  // ASSUMES THAT THE PASSED 'row_assoc_array' REPRESENTS A VALID ROW IN THE DATABASE
+  function is_password_taken(&$row_assoc_array, $password_input_str, &$result_set_obj)
+  {
+    if( strcasecmp($row_assoc_array[PASSWORD_COLUMN_NAME], $password_input_str) == 0 )
+    {
+      return true;
+    }
+
+    // GO THROUGH ANY OTHER POSSIBLE ROWS IN THE RESULT SET
+    do
+    {
+      $row_assoc_array = $result_set_obj->fetch_assoc();
+
+      // IF THERE IS ANOTHER ROW TO CHECK
+      if($row_assoc_array != NULL)
+      {
+        if( strcasecmp($row_assoc_array[PASSWORD_COLUMN_NAME], $password_input_str) == 0 )
+        {
+          return true;
+        }
+      }
+    }
+    while($row_assoc_array != NULL);
+
+    return false;
   }
 
 ?>
