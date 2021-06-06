@@ -1,15 +1,16 @@
 // Easily modifiable variables for the url
 var address = 'http://contactus27.xyz/LAMPAPI';
 var extension = '.php';
-var loginAddress = '/Login';
+var loginAddress = '/login';
 var contactAddress = '/AddContact';
 var searchAddress = '/SearchContacts';
-var registerAddress = '/Register';
+var registerAddress = '/registration';
 
 // Variables regarding the user
 var userID = 0;
 var firstName = "";
 var lastName = "";
+var username = "";
 
 // Function to log in
 function login() {
@@ -23,10 +24,10 @@ function login() {
     var password = document.getElementById("password").value;
     
     // Initializes result
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").innerHTML = "Processing, please wait...";
 
     // Initializes the json payload and loads the url
-    var jsonPayload = '{"login : "' + username + '", "password" : "' + password + '"}';
+    var jsonPayload = '{"login" : "' + username + '", "password" : "' + password + '"}';
     var url = address + loginAddress + extension;
 
     // xhr = XMLHttpRequest
@@ -43,7 +44,7 @@ function login() {
                 // Processes the JSON string and assigns server response
                 var jsonObject = JSON.parse(xhr.responseText);
                 // Assigns the id from the obtained server response to the user id
-                userID = jsonObject.id;
+                userID = jsonObject.user_id_int;
 
                 // If id invalid, return
                 if(userID < 1) {
@@ -52,12 +53,15 @@ function login() {
                 }
 
                 // Assigns first name and last name from server response
-                firstName = jsonObject.firstName;
-                lastName = jsonObject.lastName;
+                firstName = jsonObject.first_name_str;
+                lastName = jsonObject.last_name_str;
 
                 // Executes save cookie function to store user session
-                saveCookie();
+                saveCookie(username);
 
+				// Displays confirmation message
+				document.getElementById("result").innerHTML = "Success!";
+				
                 // Redirects to home.html
                 window.location.href = "home.html";
             }
@@ -102,19 +106,21 @@ function validate() {
 }
 
 // Function to save cookie from server info
-function saveCookie() {
+function saveCookie(username) {
     var minutes = 20;
     var date = new Date();
 
     date.setTime(date.getTime()+(minutes*60*1000));
 
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",username=" + username + ",userID=" + userID +  ";expires=" + date.toGMTString();
 }
 
 // Reads the cookie to verify user
 function readCookie()
 {
-	userId = -1;
+	var message = "Welcome ";
+	var messageEnd = "!";
+	userID = -1;
 	var data = document.cookie;
 	var splits = data.split(",");
 
@@ -123,33 +129,28 @@ function readCookie()
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
 
-		if( tokens[0] == "firstName" ) {
+		if(tokens[0] == "firstName") {
 			firstName = tokens[1];
 		}
 
-		else if( tokens[0] == "lastName" ) {
+		else if(tokens[0] == "lastName") {
 			lastName = tokens[1];
 		}
-		else if( tokens[0] == "userId" ) {
-			userId = parseInt( tokens[1].trim() );
+		else if(tokens[0] == "username") {
+			username = tokens[1];
+		}
+		else if( tokens[0] == "userID" ) {
+			userID = parseInt( tokens[1].trim() );
 		}
 	}
 	
-	if( userId < 0 ) {
+	if( userID < 0 ) {
 		window.location.href = "index.html";
 	}
 	else {
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("welcome").innerHTML = message + firstName + " " + lastName + messageEnd;
+		document.getElementById("displayUsername").innerHTML = username;
 	}
-}
-
-// Function to display a greeting to the user
-window.onload = function greet() {
-	var message = "Welcome ";
-	var messageEnd = "!";
-
-	document.getElementById("welcome").innerHTML = message + firstName + " " + lastName + messageEnd;
-	document.getElementById("displayUsername").innerHTML = username;
 }
 
 // Function to log the user out
@@ -166,7 +167,7 @@ function addContact() {
     var newContact = document.getElementById("contactText").value;
     document.getElementById("contactAddResult").innerHTML = "";
 
-    var jsonPayload = '{"contact" : "' + newContact + '", "userId" : ' + userId + '}';
+    var jsonPayload = '{"contact" : "' + newContact + '", "userID" : ' + userID + '}';
 	var url = address + contactAddress + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -193,7 +194,7 @@ function searchContacts() {
 
     var contactList = "";
 
-    var jsonPayload = '{"search" : "' + search + '","userId" : ' + userId + '}';
+    var jsonPayload = '{"search" : "' + search + '","userID" : ' + userID + '}';
 	var url = address + '/SearchContacts' + extension;
 
     var xhr = new XMLHttpRequest();
@@ -236,7 +237,7 @@ function register() {
     document.getElementById("result").innerHTML = "";
 
 	// Initializes the json payload and loads the url
-    var jsonPayload = '{"login : "' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
+    var jsonPayload = '{"login" : ' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
     var url = address + registerAddress + extension;
 
 	// xhr = XMLHttpRequest
