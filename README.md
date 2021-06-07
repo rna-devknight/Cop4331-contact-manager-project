@@ -21,13 +21,13 @@ Objective: Develop a contact mananger web app.
 	- [x] index.html
 - [x] Create CSS stylesheet
 - [x] Create login database
-- [ ] Create APIs
+- [X] Create APIs
 	- [X] Login API
 	- [X] Registration API
-	- [ ] Create API
-	- [ ] Search API
-	- [X] Update API
-	- [ ] Delete API
+	- [X] Add (Create) API
+	- [X] Search API
+	- [X] Edit (Update) API
+	- [X] Delete API
 - [ ] Test APIs
 	- [ ] Login API
 	- [ ] Registration API
@@ -35,18 +35,28 @@ Objective: Develop a contact mananger web app.
 	- [ ] Search API
 	- [ ] Update API
 	- [ ] Delete API
-- [X] Finialize HTML pages
+- [ ] Front End Tasks
+	- [X] Integrate login API
+	- [X] Integrate registration API
+	- [X] Integrate search API
+		- [ ] Format display
+	- [ ] Integrate add API
+	- [ ] Integrate delete API
+	- [ ] Integrate edit API
+	- [ ] Beautify login page
+	- [ ] Beautify registration page
+	- [ ] Beautify home page
+- [ ] Finialize HTML pages
 	- [ ] register.html
 	- [ ] home.html
 	- [ ] index.html
-- [ ] Integrate front end with back end
-	- [ ] register.html
-	- [ ] home.html
-	- [ ] index.html
-- [ ] Database with sample data
+- [X] Populate database with sample data
 - [X] Setup www.contactus27.xyz
 - [ ] Setup encryption
 - [ ] Setup password recovery
+- [ ] Add Advanced features
+	- [ ] Profile picture
+	- [ ] 
 
 ### Database Entity Relationship Diagram (ERD)
 ![](https://github.com/mina21Beshay/Cop4331-contact-manager-project/blob/main/images/ERD_Type.png?raw=true)
