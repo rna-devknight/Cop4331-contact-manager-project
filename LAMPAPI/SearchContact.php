@@ -15,20 +15,13 @@
 	}
 	else
 	{
-		if(true)
-		{
-			$stmt = $conn->prepare("SELECT first_name, last_name, user_id FROM Users");
-		}
-		else
-		{
-			$stmt = $conn->prepare("SELECT first_name, last_name, contact_id from Contact where
-				(first_name like ? or
-				last_name like ? or
-				first_name + ' ' + last_name like ? or
-				last_name + ' ' + first_name like ?') and user_id=?");
-			$contactName = "%" . $inData["search"] . "%";
-			$stmt->bind_param("ssssi", $contactName, $contactName, $contactName, $contactName, $inData["userId"]);
-		}
+		$stmt = $conn->prepare("SELECT first_name, last_name, contact_id from Contact where
+			(first_name like ? or
+			last_name like ? or
+			first_name + ' ' + last_name like ? or
+			last_name + ' ' + first_name like ?') and user_id=?");
+		$contactName = "%" . $inData["search"] . "%";
+		$stmt->bind_param("ssssi", $contactName, $contactName, $contactName, $contactName, $inData["userId"]);
 
 		$stmt->execute();
 
