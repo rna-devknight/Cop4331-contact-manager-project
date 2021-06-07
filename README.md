@@ -5,10 +5,10 @@ Objective: Develop a contact mananger web app.
 ## Team Members and Roles
 | Team Member  | Role |
 | ------------- | ------------- |
-| mina21Beshay  | Project Manager/Front End/Database/API  |
+| mina21Beshay  | Project Manager [Let's be realistic :)] |
 | rna-devknight  | Front End  |
 | name  | Database  |
-| name  | API  |
+| Peyton Ryan  | API  |
 | name  | API  |
 
 ## Task list
