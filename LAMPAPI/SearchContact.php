@@ -15,13 +15,13 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT first_name, last_name, contact_id from Contact where
+		$stmt = $conn->prepare("SELECT first_name, last_name, contact_id, phone_num, email from Contact where
 			(first_name like ? or
 			last_name like ? or
 			first_name + ' ' + last_name like ? or
 			last_name + ' ' + first_name like ?) and user_id=?");
 		$contactName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ssssi", $contactName, $contactName, $contactName, $contactName, $inData["userId"]);
+		$stmt->bind_param("ssssi", $contactName, $contactName, $contactName, $contactName, $inData["user_id"]);
 
 		$stmt->execute();
 
@@ -34,10 +34,36 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . '<div> 
-			<div>' . $row["contact_id"] . ') ' . $row["first_name"] . ' ' . $row["last_name"] . 
-			'</div><div>' . $row["phone_num"] .
-			'</div><div>' . $row["email"] . '</div></div>"';
+			$searchResults .= '"' . "<div class = 'contactBox' id = 'contactBox" .
+			$row["contact_id"] . 
+			"'><div class = 'contactId'>" . 
+			$row["contact_id"] . 
+			"</div><input type='text' id='firstName" .
+			$row["contact_id"] . 
+			"' value='" .
+			$row["first_name"] .
+			"'> <input type='text' id='lastName" .
+			$row["contact_id"] .
+			"' value='" .
+			$row["last_name"] .
+			"'> <br/><input type='text' id='phone" .
+			$row["contact_id"] .
+			"' value='" .
+			$row["phone_num"] .
+			"'> <br/><input type='text' id='email" .
+			$row["contact_id"] .
+			"' value='" .
+			$row["email"] .
+			"'> <br/><button type='button' id='submit" .
+			$row["contact_id"] .
+			"' onclick='updateContact(" .
+			$row["contact_id"] .
+			")'>Update</button><button type='button' id='delete" .
+			$row["contact_id"] .
+			"' onclick='deleteContact(" .
+			$row["contact_id"] .
+			")'>Delete</button></div>" .
+			'"';
 		}
 
 		if( $searchCount == 0 )

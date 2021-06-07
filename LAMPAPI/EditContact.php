@@ -2,8 +2,8 @@
 	$inData = getRequestInfo();
 
 	// I believe in Cammel Case Supperiority
-	$contactId = $inData["contact_id"];
 	$userId = $inData["user_id"];
+	$contactId = $inData["contact_id"];
 	$firstName = $inData["first_name"];
 	$lastName = $inData["last_name"];
 	$phoneNumber = $inData["phone_num"];
@@ -20,13 +20,13 @@
 	else
 	{
 		$add = $conn->prepare("UPDATE Contact set
-			first_name = $firstName,
-			last_name = $lastName,
-			phone_num = $phoneNumer,
-			email = $email where
-			user_id = $userId AND
-			contact_id = $contactId");
-		$add->bind_param("sssssss", $index, $firstName, $phoneNumber, $email, $dateRecord, $userId);
+			first_name = ?,
+			last_name = ?,
+			phone_num = ?,
+			email = ? where
+			user_id = ? AND
+			contact_id = ?");
+		$add->bind_param("ssssss", $firstName, $lastName, $phoneNumber, $email, $userId, $contactId);
 		$add->execute();
 		$add->close();
 
