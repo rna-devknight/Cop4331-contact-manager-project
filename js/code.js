@@ -3,7 +3,7 @@ var address = 'http://contactus27.xyz/LAMPAPI';
 var extension = '.php';
 var loginAddress = '/login';
 var contactAddress = '/AddContact';
-var searchAddress = '/SearchContacts';
+var searchAddress = '/SearchContact';
 var registerAddress = '/registration';
 
 // Variables regarding the user
@@ -153,13 +153,17 @@ function register() {
 
 // Function to search contacts
 function searchContacts() {
-    var search = document.getElementById("searchText").value;
-    document.getElementById("searchResult").innerHTML = "";
+    var search = "";
+	search = document.getElementById("searchText").value;
+    document.getElementById("contactSearchResult").innerHTML = "";
 
     var contactList = "";
+	
+	if(search == null)
+		search = "";
 
-    var jsonPayload = '{"search" : "' + search + '","userID" : ' + userID + '}';
-	var url = address + '/SearchContacts' + extension;
+    var jsonPayload = '{"first_name" : "' + search + '", "last_name" : "' + lastName + '", "user_id" : "' + userID + '"}';
+	var url = address + searchAddress + extension;
 
     var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -171,14 +175,16 @@ function searchContacts() {
 				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				var jsonObject = JSON.parse( xhr.responseText );
 				
-				for( var i=0; i<jsonObject.results.length; i++ ) {
+				for(var i = 0; i < jsonObject.results.length; i++ ) {
 					contactList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )	{
-						contactList += "<br />\r\n";
+
+					if(i < jsonObject.results.length - 1) {
+						contactList += "<br/>\r\n";
 					}
 				}
 				
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
+				// document.getElementsByTagName("p")[3].innerHTML = contactList;
+				document.getElementById("contactList").innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
