@@ -234,10 +234,10 @@ function register() {
 	var lastName = document.getElementById("lastName").value;
 
 	// Initializes result
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").innerHTML = "Processing, please wait...";
 
 	// Initializes the json payload and loads the url
-    var jsonPayload = '{"login" : ' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
+    var jsonPayload = '{"login" : "' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
     var url = address + registerAddress + extension;
 
 	// xhr = XMLHttpRequest
@@ -252,16 +252,10 @@ function register() {
             // If request is finished and response is correct
             if(this.readyState == 4 && this.status == 200) {
                 // Processes the JSON string and assigns server response
-                // var jsonObject = JSON.parse(xhr.responseText);
-                // Assigns the id from the obtained server response to the user id
-                // userID = jsonObject.id;
+                var jsonObject = JSON.parse(xhr.responseText);
 
-				// Delete this
-                // If id invalid, return
-                // if(userID < 1) {
-                //     document.getElementById("result").innerHTML = "Username or Password is invalid";
-                //     return;
-                // }
+				// Displays confirmation message
+				document.getElementById("result").innerHTML = "Success!";
 
                 // Redirects to index.html
                 window.location.href = "index.html";
