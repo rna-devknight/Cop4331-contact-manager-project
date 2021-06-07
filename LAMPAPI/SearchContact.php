@@ -19,7 +19,7 @@
 			(first_name like ? or
 			last_name like ? or
 			first_name + ' ' + last_name like ? or
-			last_name + ' ' + first_name like ?') and user_id=?");
+			last_name + ' ' + first_name like ?) and user_id=?");
 		$contactName = "%" . $inData["search"] . "%";
 		$stmt->bind_param("ssssi", $contactName, $contactName, $contactName, $contactName, $inData["userId"]);
 
@@ -34,7 +34,10 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["first_name"] . ', ' . $row["last_name"] . ', ' . $row["user_id"] . '"';
+			$searchResults .= '"' . '<div> 
+			<div>' . $row["contact_id"] . ') ' . $row["first_name"] . ' ' . $row["last_name"] . 
+			'</div><div>' . $row["phone_num"] .
+			'</div><div>' . $row["email"] . '</div></div>"';
 		}
 
 		if( $searchCount == 0 )
