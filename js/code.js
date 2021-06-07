@@ -162,7 +162,7 @@ function searchContacts() {
 	if(search == null)
 		search = "";
 
-    var jsonPayload = '{"first_name" : "' + search + '", "last_name" : "' + lastName + '", "user_id" : "' + userID + '"}';
+    var jsonPayload = '{"search" : "' + search + '", "user_id" : "' + userID + '"}';
 	var url = address + searchAddress + extension;
 
     var xhr = new XMLHttpRequest();
@@ -197,10 +197,18 @@ function searchContacts() {
 
 // Function to add a contact
 function addContact() {
-    var newContact = document.getElementById("contactText").value;
+    var newFirst = document.getElementById("contactFirst").value;
+	var newLast = document.getElementById("contactLast").value;
+	var newPhone = document.getElementById("contactPhone").value;
+	var newEmail = document.getElementById("contactEmail").value;
     document.getElementById("contactAddResult").innerHTML = "";
 
-    var jsonPayload = '{"contact" : "' + newContact + '", "userID" : ' + userID + '}';
+    var jsonPayload = '{"first_name" : "' + newFirst + 
+	'", "userID" : ' + userID + 
+	'", "last_name" : ' + newName +
+	'", "phone_num" : ' + newPhone +
+	'", "email" : ' + newEmail +
+	'}';
 	var url = address + contactAddress + extension;
 
 	var xhr = new XMLHttpRequest();
