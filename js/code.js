@@ -29,7 +29,10 @@ function login() {
     document.getElementById("result").innerHTML = "Processing, please wait...";
 
     // Initializes the json payload and loads the url
-    var jsonPayload = '{"login" : "' + username + '", "password" : "' + password + '"}';
+    var jsonPayload = 	'{"login" : "' + username + 
+						'", "password" : "' + password + 
+						'"}';
+
     var url = address + loginAddress + extension;
 
     // xhr = XMLHttpRequest
@@ -119,7 +122,12 @@ function register() {
     document.getElementById("result").innerHTML = "Processing, please wait...";
 
 	// Initializes the json payload and loads the url
-    var jsonPayload = '{"login" : "' + username + '", "password" : "' + password + '", "firstName" : "' + firstName + '", "lastName" : "' + lastName + '"}';
+    var jsonPayload = 	'{"login" : "' + username + 
+						'", "password" : "' + password + 
+						'", "firstName" : "' + firstName + 
+						'", "lastName" : "' + lastName + 
+						'"}';
+
     var url = address + registerAddress + extension;
 
 	// xhr = XMLHttpRequest
@@ -166,7 +174,10 @@ function searchContacts() {
 	if(search == null)
 		search = "";
 
-    var jsonPayload = '{"search" : "' + search + '", "user_id" : "' + userID + '"}';
+    var jsonPayload = 	'{"search" : "' + search + 
+						'", "user_id" : "' + userID + 
+						'"}';
+
 	var url = address + searchAddress + extension;
 
     var xhr = new XMLHttpRequest();
@@ -208,12 +219,13 @@ function addContact() {
 	var newEmail = document.getElementById("contactEmail").value;
     document.getElementById("contactAddResult").innerHTML = "";
 
-    var jsonPayload = '{"first_name" : "' + newFirst + 
-	'", "user_id" : ' + userID + 
-	'", "last_name" : ' + newName +
-	'", "phone_num" : ' + newPhone +
-	'", "email" : ' + newEmail +
-	'}';
+    var jsonPayload = 	'{"first_name" : "' + newFirst + 
+						'", "user_id" : "' + userID + 
+						'", "last_name" : "' + newName +
+						'", "phone_num" : "' + newPhone +
+						'", "email" : "' + newEmail +
+						'"}';
+
 	var url = address + contactAddress + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -241,13 +253,14 @@ function updateContact(contact_id) {
 	var newEmail = document.getElementById("email" + contact_id).value;
     document.getElementById("contactSearchResult").innerHTML = "";
 
-    var jsonPayload = '{"first_name" : "' + newFirst + 
-	'", "user_id" : ' + userID + 
-	', "last_name" : "' + newLast +
-	'", "phone_num" : "' + newPhone +
-	'", "email" : "' + newEmail +
-	'", "contact_id" : ' + contact_id +
-	'}';
+    var jsonPayload = 	'{"first_name" : "' + newFirst + 
+						'", "user_id" : "' + userID + 
+						'", "last_name" : "' + newLast +
+						'", "phone_num" : "' + newPhone +
+						'", "email" : "' + newEmail +
+						'", "contact_id" : "' + contact_id +
+						'"}';
+
 	console.log(jsonPayload);
 	var url = address + editAddress + extension;
 
@@ -272,9 +285,10 @@ function updateContact(contact_id) {
 function deleteContact(contact_id) {
     document.getElementById("contactSearchResult").innerHTML = "";
 
-    var jsonPayload = '{"user_id" : ' + userID + 
-	', "contact_id" : ' + contact_id +
-	'}';
+    var jsonPayload = 	'{"user_id" : "' + userID + 
+						'", "contact_id" : "' + contact_id +
+						'"}';
+
 	console.log(jsonPayload);
 	var url = address + deleteAddress + extension;
 
@@ -313,7 +327,11 @@ function saveCookie(username) {
 
     date.setTime(date.getTime()+(minutes*60*1000));
 
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",username=" + username + ",userID=" + userID +  ";expires=" + date.toGMTString();
+	document.cookie = 	"firstName=" + firstName + 
+						",lastName=" + lastName + 
+						",username=" + username + 
+						",userID=" + userID +  
+						";expires=" + date.toGMTString();
 }
 
 // Reads the cookie to verify user
