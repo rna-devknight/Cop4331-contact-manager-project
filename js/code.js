@@ -220,11 +220,11 @@ function addContact() {
     document.getElementById("contactAddResult").innerHTML = "";
 
     var jsonPayload = 	'{"first_name" : "' + newFirst + 
-						'", "user_id" : "' + userID + 
-						'", "last_name" : "' + newName +
-						'", "phone_num" : "' + newPhone +
-						'", "email" : "' + newEmail +
-						'"}';
+						'", "user_id" : ' + userID + 
+						'", "last_name" : ' + newName +
+						'", "phone_num" : ' + newPhone +
+						'", "email" : ' + newEmail +
+						'}';
 
 	var url = address + contactAddress + extension;
 
@@ -254,12 +254,12 @@ function updateContact(contact_id) {
     document.getElementById("contactSearchResult").innerHTML = "";
 
     var jsonPayload = 	'{"first_name" : "' + newFirst + 
-						'", "user_id" : "' + userID + 
-						'", "last_name" : "' + newLast +
+						'", "user_id" : ' + userID + 
+						', "last_name" : "' + newLast +
 						'", "phone_num" : "' + newPhone +
 						'", "email" : "' + newEmail +
-						'", "contact_id" : "' + contact_id +
-						'"}';
+						'", "contact_id" : ' + contact_id +
+						'}';
 
 	console.log(jsonPayload);
 	var url = address + editAddress + extension;
@@ -285,9 +285,9 @@ function updateContact(contact_id) {
 function deleteContact(contact_id) {
     document.getElementById("contactSearchResult").innerHTML = "";
 
-    var jsonPayload = 	'{"user_id" : "' + userID + 
-						'", "contact_id" : "' + contact_id +
-						'"}';
+    var jsonPayload = 	'{"user_id" : ' + userID + 
+						', "contact_id" : ' + contact_id +
+						'}';
 
 	console.log(jsonPayload);
 	var url = address + deleteAddress + extension;
