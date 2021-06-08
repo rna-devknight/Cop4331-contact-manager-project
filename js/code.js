@@ -175,8 +175,8 @@ function searchContacts() {
 		search = "";
 
     var jsonPayload = 	'{"search" : "' + search + 
-						'", "user_id" : "' + userID + 
-						'"}';
+						'", "user_id" : ' + userID + 
+						'}';
 
 	var url = address + searchAddress + extension;
 
@@ -221,10 +221,10 @@ function addContact() {
 
     var jsonPayload = 	'{"first_name" : "' + newFirst + 
 						'", "user_id" : ' + userID + 
-						'", "last_name" : ' + newName +
-						'", "phone_num" : ' + newPhone +
-						'", "email" : ' + newEmail +
-						'}';
+						', "last_name" : "' + newLast +
+						'", "phone_num" : "' + newPhone +
+						'", "email" : "' + newEmail +
+						'"}';
 
 	var url = address + contactAddress + extension;
 
