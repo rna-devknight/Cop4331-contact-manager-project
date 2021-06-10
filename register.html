@@ -5,11 +5,15 @@
         <meta charset="utf-8">
 
         <!-- Including Bootstrap for quick, easy, and clean looking CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">-->
 
         <!-- Linking to styles.css -->
         <!-- Used for styling -->
-        <link href="css/styles.css" rel="stylesheet">
+        <!--<link href="css/styles.css" rel="stylesheet">-->
+		
+		<!-- Linking to peyton.css -->
+        <!-- Peyton's Styling -->
+        <link href="css/peyton.css" rel="stylesheet">
 
         <!-- Linking to register.js -->
         <!-- Used to provide functionality -->
@@ -48,13 +52,12 @@
     <body>
 		<div class="container">
 			<!-- Row one, contains the title -->
-			<div class="row">
+			<div class="row header">
 				<h1 style="text-align: center;">Welcome to Group 27's Contact Manager's Registration Page</h1>
-				<h5 style="text-align: center;">Website under development, please do not use.</h5>
 			</div>
 
 			<!-- Row two, contains the login form -->
-			<div class ="row justify-content-center pt-4">
+			<div class ="row justify-content-center pt-4 main">
 				<!-- Bootstrap column containing the form. Styled to be centered -->
 				<div class="col-6 align-self-center">
 					<!-- Login form, has client side validation to prevent empty submissions -->
@@ -137,7 +140,7 @@
 			</div>
 
 			<!-- Row three, contains additional functionality -->
-			<div class="row justify-content-center pt-2">
+			<div class="row justify-content-center pt-2 footer">
                 <!-- Button to go back to index.html -->
                 <div class="col-6 align-self-start">
                     <a class="btn btn-warning btn-lg" href="/index.html" role="button">
