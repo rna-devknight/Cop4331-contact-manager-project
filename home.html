@@ -10,7 +10,7 @@
         <!-- Linking to styles.css -->
         <!-- Used for styling -->
         <!--<link href="css/styles.css" rel="stylesheet">-->
-		
+
 		<!-- Linking to peyton.css -->
         <!-- Peyton's Styling -->
         <link href="css/peyton.css" rel="stylesheet">
@@ -36,23 +36,20 @@
     <body>
         <div class="container">
             <div class="row header">
-                <h1 style="text-align: center;">Welcome to Group 27's Contact Manager</h1>
+                <h1 style="text-align: center;">Group 27 Contact Manager</h1>
 
                 <div class="col-9">
-                    
+
                 </div>
                 <div class="col-3 align-self-end">
-                    <p id="welcome"></p>
-                    <p>Username: <span id="displayUsername"></span></p>
-                    <button type="button" class="btn btn-danger float-end" onclick="logout();">Logout</button>
                 </div>
             </div>
-			
-			<div class="main">
-				<div class="row">
+
+			<div class="row justify-content-center pt-4 main">
 					<div class="col-6 justify-content-center">
 
-						<div class="row" style="margin-top:-5%;">
+						<div class="row">
+              <h5> Contacts </h5>
 							<!-- Search bar -->
 							<label for="searchText" class="col-1 col-form-label">Name:</label>
 
@@ -64,34 +61,30 @@
 						</div>
 
 						<button type="button" id="search" class="btn btn-primary" onclick="searchContacts();">Search</button>
-                
-					</div>
-				</div>
 
-				<div class="row">
 					<span id="contactSearchResult"></span>
 					<h4>Contact List: <br></h4>
 					<p id="contactList">
-
 					</p>
-				</div>
 
-				<div class="row" id="loadDatabase">
+				  <div class="row" id="loadDatabase">
 
-				</div>
+				  </div>
+          </div>
 			</div>
 
 			<div class="footer">
-				<div class="form-group row pt-2 pb-4">
-                
+				<div class="footer-left">
+          <p id="welcome"></p>
+          <p>Username: <span id="displayUsername"></span></p>
+          <button type="button" class="button-small btn btn-danger float-end" onclick="logout();">Logout</button>
 				</div>
 
-				<div class="row justify-content-end">
-					<div class="col-4">
+				<div class="footer-right">
 
-					</div>
 				</div>
 			</div>
-        </div>
+      <div class="footer-padder"></div>
+      </div>
     </body>
 </html>

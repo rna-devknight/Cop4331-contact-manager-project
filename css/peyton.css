@@ -1,11 +1,19 @@
 :root {
-	--black: #353535;
+	--black: #002626;
 	--red: #ED1C24;
-	/*--brown: #8A897C;
-	--tan: #BDBBB0;*/
-	--brown: #5E4AE3;
-	--tan: #07BEB8;
 	--white: #FFFFFF;
+	--bl: #003030;
+	--bd: #001818;
+
+	/* Brown / Yellow
+	--brown: #9F7833;
+	--tan: #D19C1D;
+	*/
+
+	/*Dark Blue/ Blue*/
+	--brown: #0077B6;
+	--tan: #0CBABA;
+
 }
 
 @keyframes moving-background {
@@ -25,25 +33,42 @@
 }
 
 html, body {
-	background-color: var(--brown);
+	background-color: var(--tan);
 	margin: 0px;
 	padding: 0px;
-	min-height: 100%;
+	font-family: Arial;
 }
 
 div, p, button, h1, h2, h3, h4, h5, h6, h7 {
 	color: var(--black);
 }
 
+h1 {
+	font-size: 40px;
+	font-weight:bold;
+	text-shadow: 2px 1px 2px var(--brown);
+}
+
 h5 {
-	font-size: 20px;
+	font-size: 25px;
+	text-align: center;
+	margin: 8px 0;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px var(--brown);
+}
+
+label, h4 {
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px var(--brown);
 }
 
 button {
 	background-color: var(--brown);
 	color: var(--white);
+	text-shadow: 2px 2px var(--black);
 	border-radius: 15px;
-	border-color: var(--black);
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 3px;
 	border-style: solid;
 	padding: 10px 25px;
@@ -57,47 +82,104 @@ button {
 	letter-spacing: 2px;
 }
 
+button.button-small {
+	font-size:12px;
+	font-weight: normal;
+	padding: 4px 10px;
+	margin: 6px 17px;
+	border-radius: 10px;
+}
+
 button:hover {
 	background-color: var(--black);
 	margin: 0px;
 	padding: 11px 27px;
 }
 
+button.button-small:hover {
+	background-color: var(--black);
+	margin: 5px 15px;
+	padding: 5px 12px;
+}
 
+input {
+	background-color: var(--brown);
+	color: var(--white);
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
+	border-width: 2px;
+	border-radius:15px;
+	font-size: 18px;
+	padding: 5px 15px;
+	outline: none;
+	margin: 2px;
+	font-family: Courier;
+}
+
+input:focus {
+	border-width: 4px;
+	margin: 0;
+}
+
+input::placeholder{
+  color: var(--white);
+	opacity: .65;
+}
 
 .header{
 	margin: 0px;
+	height: 50px;
 	background-color: var(--tan);
 	padding-bottom: 10px;
 	padding-top: 20px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border-color: var(--black);
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 0 0 3px 0;
 	border-style: solid;
 	margin-bottom: 20px;
 }
 
+.main{
+	height: calc(100% - (496px));
+	position: relative;
+	max-width: 400px;
+	margin: 150px auto;
+	background-color: var(--tan);
+	border-radius: 15px;
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
+	border-width: 3px;
+	border-style: solid;
+	padding: 15px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .footer{
 	margin: 0px;
+	min-height: 50px;
 	background-color: var(--tan);
-	padding-bottom: 10px;
-	padding-top: 20px;
+	padding: 20px 10px 10px 10px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	border-color: var(--black);
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 3px 0 0 0;
 	border-style: solid;
 	margin-top: 20px;
 }
 
+.footer-padder{
+	height: 30px;
+	background-color:var(--tan);
+}
+
 
 .container {
+	height: 100%;
 	z-index: 5;
+	background-color: var(--brown);
 	background-image:
-  linear-gradient(45deg, var(--tan) 25%, transparent 25%), 
+  linear-gradient(45deg, var(--tan) 25%, transparent 25%),
   linear-gradient(-45deg, var(--tan) 25%, transparent 25%),
   linear-gradient(45deg, transparent 75%, var(--tan) 75%),
   linear-gradient(-45deg, transparent 75%, var(--tan) 75%);
-	background-size:20px 20px;    
+	background-size:20px 20px;
 	background-position:0 0, 10px 0, 10px -10px, 0px 10px;
 	animation-name: moving-background;
 	animation-duration: 10s;
@@ -114,20 +196,16 @@ button:hover {
 }
 
 .invalid-feedback {
-	color: var(--red);
-}
-
-.main{
-	max-width: 400px;
-	margin: 150px auto;
-	background-color: var(--tan);
-	border-radius: 15px;
-	border-color: var(--black);
-	border-width: 3px;
+	text-align: center;
+	color: var(--black);
+	background-color: var(--red);
+	border-radius:10px;
+	display: inline-block;
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
+	border-width: 2px;
 	border-style: solid;
-	padding: 15px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	
+	width: 80%;
+	margin: 5px 10% 0 10%;
 }
 
 .justify-content-center{
@@ -136,4 +214,22 @@ button:hover {
 
 .align-self-center{
 	align-self: center;
+}
+
+.row{
+	display: block;
+}
+
+.main .form-group {
+	margin: auto;
+	width: min-content;
+	padding: 10px 0;
+}
+
+.main .form-group .col-sm-9 {
+	width: min-content;
+}
+
+.main .form-group .col-sm-9 input{
+	width: 250px;
 }

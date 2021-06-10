@@ -12,7 +12,7 @@
 		<!-- Linking to styles.css -->
 		<!-- Used for styling -->
 		<link href="css/styles.css" rel="stylesheet">
-		
+
 		<!-- Linking to peyton.css -->
         <!-- Peyton's Styling -->
         <link href="css/peyton.css" rel="stylesheet">
@@ -35,7 +35,7 @@
 					var forms = document.getElementsByClassName('needs-validation');
 					// Loop over them and prevent submission
 					var validation = Array.prototype.filter.call(forms, function(form) {
-				
+
 						form.addEventListener('submit', function(event) {
 							if (!form.checkValidity()) {
 								event.preventDefault();
@@ -49,7 +49,7 @@
 				})();
 		</script>
 
-		<title>Group 27 Contact Manager</title> 
+		<title>Group 27 Contact Manager</title>
 	</head>
 
 	<body>
@@ -63,28 +63,28 @@
 			<div class ="row justify-content-center pt-4 main">
 				<!-- Bootstrap column containing the form. Styled to be centered -->
 				<div class="col-6 align-self-center">
-					<h5>Please input your credentials to login: </h5>
+					<h5>Login</h5>
 
 					<!-- Username input row -->
 					<div class="form-group row pb-2">
 						<label for="username" class="col-sm-3 col-form-label">Username:</label>
-						
+
 						<div class="col-sm-9">
 							<input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
-						
+
 							<div class="invalid-feedback">
 								Cannot be blank, please input a valid username.
 							</div>
 						</div>
 					</div>
-					
+
 					<!-- Password input row -->
 					<div class="form-group row pt-2 pb-2">
 						<label for="password" class="col-sm-3 col-form-label">Password</label>
-						
+
 						<div class="col-sm-9">
-							<input type="password" class="form-control" id="password" placeholder="********" required>				
-						
+							<input type="password" class="form-control" id="password" placeholder="********" required>
+
 							<div class="invalid-feedback">
 								Cannot be blank, please input a valid password.
 							</div>
@@ -104,14 +104,15 @@
 			<div class="row justify-content-center pt-4 footer">
 				<!-- Button for password recovery. May not be implemented-->
 				<div class="col-2">
-					<a class="btn btn-primary btn-md disabled" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="link-info">Don't forget your password! Recovering currently unavailable.</a>
+					Don't have an account?
 				</div>
 
 				<!-- Button for registration -->
 				<div class="col-2">
-					<a class="btn btn-outline-warning btn-md" href="/register.html" class="link-info">Register</a>
+					<button class="button-small btn-outline-warning btn-md" href="/register.html" class="link-info">Register</button>
 				</div>
 			</div>
+			<div class="footer-padder"></div>
 		</div>
 
 		<!-- Required Bootstrap scripts -->
