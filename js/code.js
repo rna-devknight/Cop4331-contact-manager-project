@@ -356,6 +356,12 @@ function saveCookie(username) {
 						";expires=" + date.toGMTString();
 }
 
+// Funciton to add class name Touched to input elements
+function addTouched(x)
+{
+  x.classList.add("touched");
+}
+
 // Reads the cookie to verify user
 function readCookie()
 {
@@ -392,4 +398,5 @@ function readCookie()
 		document.getElementById("welcome").innerHTML = message + firstName + " " + lastName + messageEnd;
 		document.getElementById("displayUsername").innerHTML = username;
 	}
+
 }
