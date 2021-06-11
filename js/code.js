@@ -24,13 +24,13 @@ function login() {
     // Obtains username and password from approriate id tag
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    
+
     // Initializes result
     document.getElementById("result").innerHTML = "Processing, please wait...";
 
     // Initializes the json payload and loads the url
-    var jsonPayload = 	'{"login" : "' + username + 
-						'", "password" : "' + password + 
+    var jsonPayload = 	'{"login" : "' + username +
+						'", "password" : "' + password +
 						'"}';
 
     var url = address + loginAddress + extension;
@@ -66,7 +66,7 @@ function login() {
 
 				// Displays confirmation message
 				document.getElementById("result").innerHTML = "Success!";
-				
+
                 // Redirects to home.html
                 window.location.href = "home.html";
             }
@@ -122,10 +122,10 @@ function register() {
     document.getElementById("result").innerHTML = "Processing, please wait...";
 
 	// Initializes the json payload and loads the url
-    var jsonPayload = 	'{"login" : "' + username + 
-						'", "password" : "' + password + 
-						'", "firstName" : "' + firstName + 
-						'", "lastName" : "' + lastName + 
+    var jsonPayload = 	'{"login" : "' + username +
+						'", "password" : "' + password +
+						'", "firstName" : "' + firstName +
+						'", "lastName" : "' + lastName +
 						'"}';
 
     var url = address + registerAddress + extension;
@@ -163,19 +163,21 @@ function register() {
 
 // Function to search contacts
 function searchContacts() {
-    var search = "";
+  var search = "";
+  document.getElementById("add-new-box").style.display = "none";
+  document.getElementById("contactList").style.display = "block";
 	search = document.getElementById("searchText").value;
 	console.log(search);
 	console.log(userID);
     document.getElementById("contactSearchResult").innerHTML = "";
 
     var contactList = "";
-	
+
 	if(search == null)
 		search = "";
 
-    var jsonPayload = 	'{"search" : "' + search + 
-						'", "user_id" : ' + userID + 
+    var jsonPayload = 	'{"search" : "' + search +
+						'", "user_id" : ' + userID +
 						'}';
 
 	var url = address + searchAddress + extension;
@@ -190,7 +192,7 @@ function searchContacts() {
 				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				var jsonObject = JSON.parse( xhr.responseText );
 				console.log(jsonObject);
-				
+
 				for(var i = 0; i < jsonObject.results.length; i++ ) {
 					contactList += jsonObject.results[i];
 
@@ -198,8 +200,9 @@ function searchContacts() {
 						contactList += "<br/>\r\n";
 					}
 				}
-				
+
 				// document.getElementsByTagName("p")[3].innerHTML = contactList;
+        document.getElementById("contact-list-heading").style.display = "inline";
 				document.getElementById("contactList").innerHTML = contactList;
 			}
 		};
@@ -211,6 +214,14 @@ function searchContacts() {
 
 }
 
+// Function to show section to add a contact
+function showAdd(){
+  document.getElementById("contactSearchResult").innerHTML = "";
+  document.getElementById("contact-list-heading").style.display = "none";
+  document.getElementById("contactList").style.display = "none";
+  document.getElementById("add-new-box").style.display = "block";
+}
+
 // Function to add a contact
 function addContact() {
     var newFirst = document.getElementById("contactFirst").value;
@@ -219,8 +230,8 @@ function addContact() {
 	var newEmail = document.getElementById("contactEmail").value;
     document.getElementById("contactAddResult").innerHTML = "";
 
-    var jsonPayload = 	'{"first_name" : "' + newFirst + 
-						'", "user_id" : ' + userID + 
+    var jsonPayload = 	'{"first_name" : "' + newFirst +
+						'", "user_id" : ' + userID +
 						', "last_name" : "' + newLast +
 						'", "phone_num" : "' + newPhone +
 						'", "email" : "' + newEmail +
@@ -235,7 +246,11 @@ function addContact() {
     try	{
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("ccontactAddResult").innerHTML = "Contact has been added";
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+        document.getElementById("contactFirst").value = "";
+    	  document.getElementById("contactLast").value = "";
+    	  document.getElementById("contactPhone").value = "";
+    	  document.getElementById("contactEmail").value = "";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -253,8 +268,8 @@ function updateContact(contact_id) {
 	var newEmail = document.getElementById("email" + contact_id).value;
     document.getElementById("contactSearchResult").innerHTML = "";
 
-    var jsonPayload = 	'{"first_name" : "' + newFirst + 
-						'", "user_id" : ' + userID + 
+    var jsonPayload = 	'{"first_name" : "' + newFirst +
+						'", "user_id" : ' + userID +
 						', "last_name" : "' + newLast +
 						'", "phone_num" : "' + newPhone +
 						'", "email" : "' + newEmail +
@@ -281,11 +296,18 @@ function updateContact(contact_id) {
 	}
 }
 
+// Function to display alert and confirm delete
+function deletePopup(contact_id) {
+  if(confirm("Are you sure you want to delete contact " + contact_id + "?")) {
+    deleteContact(contact_id);
+  }
+}
+
 // Function to delete a contact
 function deleteContact(contact_id) {
     document.getElementById("contactSearchResult").innerHTML = "";
 
-    var jsonPayload = 	'{"user_id" : ' + userID + 
+    var jsonPayload = 	'{"user_id" : ' + userID +
 						', "contact_id" : ' + contact_id +
 						'}';
 
@@ -327,10 +349,10 @@ function saveCookie(username) {
 
     date.setTime(date.getTime()+(minutes*60*1000));
 
-	document.cookie = 	"firstName=" + firstName + 
-						",lastName=" + lastName + 
-						",username=" + username + 
-						",userID=" + userID +  
+	document.cookie = 	"firstName=" + firstName +
+						",lastName=" + lastName +
+						",username=" + username +
+						",userID=" + userID +
 						";expires=" + date.toGMTString();
 }
 
@@ -343,7 +365,7 @@ function readCookie()
 	var data = document.cookie;
 	var splits = data.split(",");
 
-	for(var i = 0; i < splits.length; i++) 
+	for(var i = 0; i < splits.length; i++)
 	{
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
@@ -362,7 +384,7 @@ function readCookie()
 			userID = parseInt( tokens[1].trim() );
 		}
 	}
-	
+
 	if( userID < 0 ) {
 		window.location.href = "index.html";
 	}

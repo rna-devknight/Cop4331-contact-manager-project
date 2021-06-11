@@ -25,9 +25,9 @@
 
         <!-- Immediately reads the cookie once HTML has loaded -->
         <script type="text/javascript">
-            /*document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function() {
                 readCookie();
-            }, false);*/
+            }, false);
         </script>
 
         <title>Homepage</title>
@@ -60,31 +60,55 @@
 							<p></p>
 						</div>
 
-						<button type="button" id="search" class="btn btn-primary" onclick="searchContacts();">Search</button>
+						<button type="button" id="search" class="button-small btn btn-primary" onclick="searchContacts();">Search</button>
+            <div>or</div>
+            <button type="button" id="add" class="button-small btn btn-primary" onclick="showAdd();">Add New</button>
 
 					<span id="contactSearchResult"></span>
-					<h4>Contact List: <br></h4>
+					<h4 id="contact-list-heading">Contact List: <br></h4>
 					<p id="contactList">
 					</p>
 
 				  <div class="row" id="loadDatabase">
 
 				  </div>
+
+          <div id="add-new-box">
+            <h4>New Contact</h4>
+            <div id="contactAddResult"></div>
+            <div>First Name</div>
+            <input type='text' id='contactFirst'>
+            <div>Last Name</div>
+            <input type='text' id='contactLast'>
+            <div>Phone Number</div>
+            <input type='text' id='contactPhone'>
+            <div>Email</div>
+            <input type='text' id='contactEmail'><br/>
+            <button onclick="addContact();">Create</button>
+          </div>
           </div>
 			</div>
 
 			<div class="footer">
 				<div class="footer-left">
-          <p id="welcome"></p>
-          <p>Username: <span id="displayUsername"></span></p>
-          <button type="button" class="button-small btn btn-danger float-end" onclick="logout();">Logout</button>
-				</div>
+          <div class="footer-left-header">
+            <p id="welcome"></p>
+            <p>Username: <span id="displayUsername"></span></p>
+          </div>
+          <div class="footer-left-button-box">
+            <button type="button" class="button-small btn btn-danger float-end" onclick="logout();">Logout</button>
+          </div>
+        </div>
 
 				<div class="footer-right">
-
+          Peyon Ryan<br/>
+          Charlie Tan<br/>
+          Ricardo Nunes Alcobia<br/>
+          Luis Jimenez Guerra<br/>
+          Mina Beshay
 				</div>
+
+        <div class="footer-padder"></div>
 			</div>
-      <div class="footer-padder"></div>
-      </div>
     </body>
 </html>

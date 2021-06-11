@@ -15,13 +15,22 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT first_name, last_name, contact_id, phone_num, email from Contact where
-			(first_name like ? or
-			last_name like ? or
-			first_name + ' ' + last_name like ? or
-			last_name + ' ' + first_name like ?) and user_id=?");
-		$contactName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ssssi", $contactName, $contactName, $contactName, $contactName, $inData["user_id"]);
+		if($inData["search"] == "")
+		{
+			$stmt = $conn->prepare("SELECT first_name, last_name, contact_id, phone_num, email from Contact where
+				 user_id=?");
+			$stmt->bind_param("i", $inData["user_id"]);
+		}
+		else
+		{
+			$stmt = $conn->prepare("SELECT first_name, last_name, contact_id, phone_num, email from Contact where
+				(first_name like ? or
+				last_name like ? or
+				first_name + ' ' + last_name like ? or
+				last_name + ' ' + first_name like ?) and user_id=?");
+			$contactName = "%" . $inData["search"] . "%";
+			$stmt->bind_param("ssssi", $contactName, $contactName, $contactName, $contactName, $inData["user_id"]);
+		}
 
 		$stmt->execute();
 
@@ -35,11 +44,11 @@
 			}
 			$searchCount++;
 			$searchResults .= '"' . "<div class = 'contactBox' id = 'contactBox" .
-			$row["contact_id"] . 
-			"'><div class = 'contactId'>" . 
-			$row["contact_id"] . 
+			$row["contact_id"] .
+			"'><div class = 'contactId'>Contact ID: " .
+			$row["contact_id"] .
 			"</div><input type='text' id='firstName" .
-			$row["contact_id"] . 
+			$row["contact_id"] .
 			"' value='" .
 			$row["first_name"] .
 			"'> <input type='text' id='lastName" .
@@ -54,13 +63,13 @@
 			$row["contact_id"] .
 			"' value='" .
 			$row["email"] .
-			"'> <br/><button type='button' id='submit" .
+			"'> <br/><button type='button' class='button-small' id='submit" .
 			$row["contact_id"] .
 			"' onclick='updateContact(" .
 			$row["contact_id"] .
-			")'>Update</button><button type='button' id='delete" .
+			")'>Update</button><button type='button' class='button-small' id='delete" .
 			$row["contact_id"] .
-			"' onclick='deleteContact(" .
+			"' onclick='deletePopup(" .
 			$row["contact_id"] .
 			")'>Delete</button></div>" .
 			'"';
