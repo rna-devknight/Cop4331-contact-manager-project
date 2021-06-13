@@ -39,13 +39,13 @@ Objective: Develop a contact mananger web app.
 	- [X] Integrate login API
 	- [X] Integrate registration API
 	- [X] Integrate search API
-		- [ ] Format display
-	- [ ] Integrate add API
-	- [ ] Integrate delete API
-	- [ ] Integrate edit API
-	- [ ] Beautify login page
-	- [ ] Beautify registration page
-	- [ ] Beautify home page
+		- [X] Format display
+	- [X] Integrate add API
+	- [X] Integrate delete API
+	- [X] Integrate edit API
+	- [X] Beautify login page
+	- [X] Beautify registration page
+	- [X] Beautify home page
 - [ ] Finialize HTML pages
 	- [ ] register.html
 	- [ ] home.html
