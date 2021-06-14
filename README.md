@@ -7,7 +7,7 @@ Objective: Develop a contact mananger web app.
 | ------------- | ------------- |
 | mina21Beshay  | Project Manager [Let's be realistic :)] |
 | rna-devknight  | Front End  |
-| name  | Database  |
+| Luis  | Database  |
 | Peyton Ryan  | API  |
 | name  | API  |
 
