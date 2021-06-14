@@ -6,27 +6,27 @@
 
         <!-- Including Bootstrap for quick, easy, and clean looking CSS -->
         <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
         <!-- Linking to styles.css -->
         <!-- Used for styling -->
         <!--<link href="css/styles.css" rel="stylesheet">-->
 
-		<!-- Linking to peyton.css -->
+		    <!-- Linking to peyton.css -->
         <!-- Peyton's Styling -->
         <link href="css/peyton.css" rel="stylesheet">
 
         <!-- Linking to register.js -->
-        <!-- Used to provide functionality -->
-        <script type="text/javascript" src="js/code.js"></script>
-
         <!-- Linking to md5.js -->
-        <!-- Used to provide encryption -->
-        <!-- Omitted for the time being -->
+        <!-- Used to provide functionality -->
+        <script type="text/javascript" src="js/md5.js"></script>
+        <script type="text/javascript" src="js/code.js"></script>
 
         <!-- Immediately reads the cookie once HTML has loaded -->
         <script type="text/javascript">
             document.addEventListener('DOMContentLoaded', function() {
                 readCookie();
+                logoutClose();
             }, false);
         </script>
 
@@ -60,12 +60,18 @@
 							<p></p>
 						</div>
 
-						<button type="button" id="search" class="button-small btn btn-primary" onclick="searchContacts();">Search</button>
-            <div>or</div>
-            <button type="button" id="add" class="button-small btn btn-primary" onclick="showAdd();">Add New</button>
+						<button type="button" id="search" class="button-small btn btn-primary" onclick="searchContacts();" aria-label="search" aria-describedby="search">
+              <i class="bi bi-search" style="font-size: 1.5rem;"></i>
+            </button>
+            
+            <!-- <div>or</div> -->
+            
+            <button type="button" id="add" class="button-small btn btn-primary" onclick="showAdd();" aria-label="Add new contact" aria-describedby="Add new contact">
+              <i class="bi bi-person-plus" style="font-size: 1.5rem;"></i>
+            </button>
 
 					<span id="contactSearchResult"></span>
-					<h4 id="contact-list-heading">Contact List: <br></h4>
+					<h4 id="contact-list-heading">Contact List <br></h4>
 					<p id="contactList">
 					</p>
 
@@ -83,7 +89,7 @@
             <div>Phone Number</div>
             <input type='text' id='contactPhone'>
             <div>Email</div>
-            <input type='text' id='contactEmail'><br/>
+            <input type='text' id='contactEmail'><br/><br/>
             <button onclick="addContact();">Create</button>
           </div>
           </div>
@@ -96,7 +102,9 @@
             <p>Username: <span id="displayUsername"></span></p>
           </div>
           <div class="footer-left-button-box">
-            <button type="button" class="button-small btn btn-danger float-end" onclick="logout();">Logout</button>
+            <button type="button" class="button-small btn btn-danger float-end" id="logoutButton" onclick="logout();" onmouseover="logoutOpen();" onmouseout="logoutClose();" aria-label="Logs user out" aria-describedby="Logs user out">
+              <span id="logoutDoor"></span>
+            </button>
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 :root {
 	--black: #002626;
 	--red: #ED1C24;
+	--green: #98DFAF;
 	--white: #FFFFFF;
 	--bl: #003030;
 	--bd: #001818;
@@ -218,6 +219,34 @@ input::placeholder{
 	display: none;
 }
 
+/* .positive-result {
+	text-align: center;
+	color: var(--black);
+	background-color: var(--green);
+	border-radius:10px;
+	display: inline-block;
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
+	border-width: 2px;
+	border-style: solid;
+	width: 80%;
+	margin: 5px 10% 0 10%;
+	display: none;
+}
+
+.negative-result {
+	text-align: center;
+	color: var(--black);
+	background-color: var(--red);
+	border-radius:10px;
+	display: inline-block;
+	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
+	border-width: 2px;
+	border-style: solid;
+	width: 80%;
+	margin: 5px 10% 0 10%;
+	display: none;
+} */
+
 .justify-content-center{
 	justify-content: center;
 }
@@ -297,3 +326,10 @@ input::placeholder{
 input.touched:not(:focus):placeholder-shown + .invalid-feedback {
 	display: inline-block;
 }
+
+/* #logoutDoor {
+	display: none;
+}
+#logoutButton:hover + span {
+	display: inline;
+} */

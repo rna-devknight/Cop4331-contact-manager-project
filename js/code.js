@@ -25,12 +25,20 @@ function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
+	// Hashes the password
+	var hash = md5(password);
+
     // Initializes result
-    document.getElementById("result").innerHTML = "Processing, please wait...";
+    document.getElementById("positive-result").innerHTML = "Processing, please wait...";
 
     // Initializes the json payload and loads the url
-    var jsonPayload = 	'{"login" : "' + username +
-						'", "password" : "' + password +
+    // var jsonPayload = 	'{"login" : "' + username +
+	// 					'", "password" : "' + password +
+	// 					'"}';
+
+	// Initializes the JSON payload and loads the url
+	var jsonPayload = 	'{"login" : "' + username +
+						'", "password" : "' + hash +
 						'"}';
 
     var url = address + loginAddress + extension;
@@ -53,7 +61,8 @@ function login() {
 
                 // If id invalid, return
                 if(userID < 1) {
-                    document.getElementById("result").innerHTML = "Username or Password is invalid";
+					document.getElementById("positive-result").innerHTML = "";
+                    document.getElementById("negative-result").innerHTML = "Username or Password is invalid";
                     return;
                 }
 
@@ -65,7 +74,7 @@ function login() {
                 saveCookie(username);
 
 				// Displays confirmation message
-				document.getElementById("result").innerHTML = "Success!";
+				document.getElementById("positive-result").innerHTML = "Success!";
 
                 // Redirects to home.html
                 window.location.href = "home.html";
@@ -77,7 +86,7 @@ function login() {
     }
     catch(err) {
         // Throws error message in id result
-        document.getElementById("result").innerHTML = err.meessage;
+        document.getElementById("negative-result").innerHTML = err.meessage;
     }
 }
 
@@ -88,10 +97,10 @@ function check() {
 	var pw2 = document.getElementById("passwordConfirmation").value;
 
 	if(pw1 != pw2) {
-		document.getElementById("result").innerHTML = "Passwords do not match.";
+		document.getElementById("negative-result").innerHTML = "Passwords do not match.";
 	}
 	else {
-		document.getElementById("result").innerHTML = "Passwords match.";
+		document.getElementById("positive-result").innerHTML = "Passwords match.";
 	}
 }
 
@@ -103,7 +112,7 @@ function validate() {
 	var pw2 = document.getElementById("passwordConfirmation").value;
 
 	if(pw1 != pw2) {
-		document.getElementById("result").innerHTML = "Passwords do not match.";
+		document.getElementById("negative-result").innerHTML = "Passwords do not match.";
 	}
 	else {
 		register();
@@ -118,12 +127,22 @@ function register() {
 	var firstName = document.getElementById("firstName").value;
 	var lastName = document.getElementById("lastName").value;
 
+	// Hashes the password
+	var hash = md5(password);
+	
 	// Initializes result
-    document.getElementById("result").innerHTML = "Processing, please wait...";
+    document.getElementById("positive-result").innerHTML = "Processing, please wait...";
 
 	// Initializes the json payload and loads the url
-    var jsonPayload = 	'{"login" : "' + username +
-						'", "password" : "' + password +
+    // var jsonPayload = 	'{"login" : "' + username +
+	// 					'", "password" : "' + password +
+	// 					'", "firstName" : "' + firstName +
+	// 					'", "lastName" : "' + lastName +
+	// 					'"}';
+
+	// Initializes the JSON payload and loads the URL
+	var jsonPayload = 	'{"login" : "' + username +
+						'", "password" : "' + hash +
 						'", "firstName" : "' + firstName +
 						'", "lastName" : "' + lastName +
 						'"}';
@@ -145,7 +164,7 @@ function register() {
                 var jsonObject = JSON.parse(xhr.responseText);
 
 				// Displays confirmation message
-				document.getElementById("result").innerHTML = "Success!";
+				document.getElementById("positive-result").innerHTML = "Success!";
 
                 // Redirects to index.html
                 window.location.href = "index.html";
@@ -157,7 +176,7 @@ function register() {
     }
     catch(err) {
         // Throws error message in id result
-        document.getElementById("result").innerHTML = err.meessage;
+        document.getElementById("negative-result").innerHTML = err.meessage;
     }
 }
 
@@ -357,14 +376,12 @@ function saveCookie(username) {
 }
 
 // Funciton to add class name Touched to input elements
-function addTouched(x)
-{
+function addTouched(x) {
   x.classList.add("touched");
 }
 
 // Reads the cookie to verify user
-function readCookie()
-{
+function readCookie() {
 	var message = "Welcome ";
 	var messageEnd = "!";
 	userID = -1;
@@ -399,4 +416,14 @@ function readCookie()
 		document.getElementById("displayUsername").innerHTML = username;
 	}
 
+}
+
+// Closes door
+function logoutClose() {
+	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-closed' style='font-size: 1.75rem;' onclick='logout();'></i>";
+}
+
+// Opens door
+function logoutOpen() {
+	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-open' style='font-size: 1.75rem;' onclick='logout();'></i>";
 }

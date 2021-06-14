@@ -11,7 +11,7 @@
 
 		<!-- Linking to styles.css -->
 		<!-- Used for styling -->
-		<link href="css/styles.css" rel="stylesheet">
+		<!-- <link href="css/styles.css" rel="stylesheet"> -->
 
 		<!-- Linking to peyton.css -->
         <!-- Peyton's Styling -->
@@ -19,11 +19,8 @@
 
 		<!-- Linking to register.js -->
 		<!-- Used to provide functionality -->
+		<script type="text/javascript" src="js/md5.js"></script>
 		<script type="text/javascript" src="js/code.js"></script>
-
-		<!-- Linking to md5.js -->
-		<!-- Used to provide encryption -->
-		<!-- Omitted for the time being -->
 
 		<!-- Script for client-side form validation -->
 		<!-- Source: https://getbootstrap.com/docs/4.0/components/forms/#validation -->
@@ -96,7 +93,10 @@
 						<button type="button" id="loginButton" class="btn btn-primary btn-block" onclick="login();">Login</button>
 					</div>
 					<!-- Displays the result of the submission -->
-					<span id="result"></span>
+					<div class="positive-result"><span id="positive-result"></span></div>
+					<div class="negative-result"><span id="negative-result"></span></div>
+					<!-- <span id="positive-result"></span>
+					<span id="negative-result"></span> -->
 				</div>
 			</div>
 
