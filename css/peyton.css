@@ -356,6 +356,10 @@ input.touched:not(:focus):placeholder-shown + .invalid-feedback {
 	text-decoration: inherit;
 }
 
+.contactId {
+	display: none;
+}
+
 .greeting {
 	margin-top: -3px;
 }
