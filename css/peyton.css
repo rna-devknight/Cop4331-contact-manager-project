@@ -14,7 +14,6 @@
 	/*Dark Blue/ Blue*/
 	--brown: #0077B6;
 	--tan: #0CBABA;
-
 }
 
 @keyframes moving-background {
@@ -131,7 +130,7 @@ input:focus {
 }
 
 input::placeholder{
-  color: var(--white);
+  	color: var(--white);
 	opacity: .65;
 }
 
@@ -167,7 +166,7 @@ input::placeholder{
 	min-height: 50px;
 	background-color: var(--tan);
 	padding: 20px 10px 10px 10px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 3px 0 0 0;
 	border-style: solid;
@@ -208,6 +207,7 @@ input::placeholder{
 .invalid-feedback {
 	text-align: center;
 	color: var(--black);
+	font-weight: bold;
 	background-color: var(--red);
 	border-radius:10px;
 	display: inline-block;
@@ -219,12 +219,13 @@ input::placeholder{
 	display: none;
 }
 
-/* .positive-result {
+.positive-result {
 	text-align: center;
 	color: var(--black);
+	font-weight: bold;
 	background-color: var(--green);
 	border-radius:10px;
-	display: inline-block;
+	display: block;
 	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 2px;
 	border-style: solid;
@@ -236,16 +237,17 @@ input::placeholder{
 .negative-result {
 	text-align: center;
 	color: var(--black);
+	font-weight: bold;
 	background-color: var(--red);
 	border-radius:10px;
-	display: inline-block;
+	display: block;
 	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 2px;
 	border-style: solid;
 	width: 80%;
 	margin: 5px 10% 0 10%;
 	display: none;
-} */
+}
 
 .justify-content-center{
 	justify-content: center;
@@ -294,6 +296,24 @@ input::placeholder{
 	padding: 10px;
 }
 
+.header-right {
+	margin-top: -50px;
+	margin-right: 20px;
+	width: min-content;
+	text-align: center;
+	float: right;
+}
+
+.header-right-header {
+	display: inline-block;
+	width: max-content;
+}
+
+.header-right-button-box {
+	width: min-content;
+	margin: auto;
+}
+
 .footer-left {
 	width: min-content;
 	text-align:center;
@@ -327,9 +347,19 @@ input.touched:not(:focus):placeholder-shown + .invalid-feedback {
 	display: inline-block;
 }
 
-/* #logoutDoor {
-	display: none;
+/* #logoutButton {
+	margin-top: -10px;
+} */
+
+.title-text {
+	color: inherit;
+	text-decoration: inherit;
 }
-#logoutButton:hover + span {
-	display: inline;
+
+.greeting {
+	margin-top: -3px;
+}
+
+/* #specialGreet {
+	margin-top: -10px;
 } */

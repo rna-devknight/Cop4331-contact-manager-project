@@ -61,6 +61,9 @@ function login() {
 
                 // If id invalid, return
                 if(userID < 1) {
+					document.getElementsByClassName("negative-result")[0].style.display = "block";
+					document.getElementsByClassName("positive-result")[0].style.display = "none";
+
 					document.getElementById("positive-result").innerHTML = "";
                     document.getElementById("negative-result").innerHTML = "Username or Password is invalid";
                     return;
@@ -74,6 +77,9 @@ function login() {
                 saveCookie(username);
 
 				// Displays confirmation message
+				document.getElementsByClassName("negative-result")[0].style.display = "none";
+				document.getElementsByClassName("positive-result")[0].style.display = "block";
+
 				document.getElementById("positive-result").innerHTML = "Success!";
 
                 // Redirects to home.html
@@ -85,6 +91,9 @@ function login() {
         xhr.send(jsonPayload);
     }
     catch(err) {
+		document.getElementsByClassName("negative-result")[0].style.display = "block";
+		document.getElementsByClassName("positive-result")[0].style.display = "none";
+
         // Throws error message in id result
         document.getElementById("negative-result").innerHTML = err.meessage;
     }
@@ -97,9 +106,17 @@ function check() {
 	var pw2 = document.getElementById("passwordConfirmation").value;
 
 	if(pw1 != pw2) {
+		document.getElementsByClassName("negative-result")[0].style.display = "block";
+		document.getElementsByClassName("positive-result")[0].style.display = "none";
+
+		document.getElementById("positive-result").innerHTML = "";
 		document.getElementById("negative-result").innerHTML = "Passwords do not match.";
 	}
 	else {
+		document.getElementsByClassName("negative-result")[0].style.display = "none";
+		document.getElementsByClassName("positive-result")[0].style.display = "block";
+
+		document.getElementById("negative-result").innerHTML = "";
 		document.getElementById("positive-result").innerHTML = "Passwords match.";
 	}
 }
@@ -112,9 +129,13 @@ function validate() {
 	var pw2 = document.getElementById("passwordConfirmation").value;
 
 	if(pw1 != pw2) {
-		document.getElementById("negative-result").innerHTML = "Passwords do not match.";
+		document.getElementsByClassName("negative-result")[0].style.display = "block";
+		document.getElementsByClassName("positive-result")[0].style.display = "none";
+
+		document.getElementById("negative-result").innerHTML = "Passwords do not match!!";
 	}
 	else {
+		document.getElementsByClassName("positive-result")[0].style.display = "block";
 		register();
 	}
 }
@@ -183,8 +204,8 @@ function register() {
 // Function to search contacts
 function searchContacts() {
   var search = "";
-  document.getElementById("add-new-box").style.display = "none";
-  document.getElementById("contactList").style.display = "block";
+  	document.getElementById("add-new-box").style.display = "none";
+ 	document.getElementById("contactList").style.display = "block";
 	search = document.getElementById("searchText").value;
 	console.log(search);
 	console.log(userID);
@@ -420,10 +441,10 @@ function readCookie() {
 
 // Closes door
 function logoutClose() {
-	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-closed' style='font-size: 1.75rem;' onclick='logout();'></i>";
+	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-closed' style='font-size: 2rem;' onclick='logout();'></i>";
 }
 
 // Opens door
 function logoutOpen() {
-	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-open' style='font-size: 1.75rem;' onclick='logout();'></i>";
+	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-open' style='font-size: 2rem;' onclick='logout();'></i>";
 }
