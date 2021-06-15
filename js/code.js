@@ -97,9 +97,11 @@ function check() {
 	var pw2 = document.getElementById("passwordConfirmation").value;
 
 	if(pw1 != pw2) {
+		document.getElementById("positive-result").innerHTML = "";
 		document.getElementById("negative-result").innerHTML = "Passwords do not match.";
 	}
 	else {
+		document.getElementById("negative-result").innerHTML = "";
 		document.getElementById("positive-result").innerHTML = "Passwords match.";
 	}
 }
@@ -183,8 +185,8 @@ function register() {
 // Function to search contacts
 function searchContacts() {
   var search = "";
-  document.getElementById("add-new-box").style.display = "none";
-  document.getElementById("contactList").style.display = "block";
+  	document.getElementById("add-new-box").style.display = "none";
+ 	document.getElementById("contactList").style.display = "block";
 	search = document.getElementById("searchText").value;
 	console.log(search);
 	console.log(userID);
