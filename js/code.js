@@ -93,7 +93,7 @@ function login() {
     catch(err) {
 		document.getElementsByClassName("negative-result")[0].style.display = "block";
 		document.getElementsByClassName("positive-result")[0].style.display = "none";
-		
+
         // Throws error message in id result
         document.getElementById("negative-result").innerHTML = err.meessage;
     }
@@ -441,10 +441,10 @@ function readCookie() {
 
 // Closes door
 function logoutClose() {
-	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-closed' style='font-size: 1.75rem;' onclick='logout();'></i>";
+	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-closed' style='font-size: 2rem;' onclick='logout();'></i>";
 }
 
 // Opens door
 function logoutOpen() {
-	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-open' style='font-size: 1.75rem;' onclick='logout();'></i>";
+	document.getElementById("logoutDoor").innerHTML = "<i class='bi bi-door-open' style='font-size: 2rem;' onclick='logout();'></i>";
 }

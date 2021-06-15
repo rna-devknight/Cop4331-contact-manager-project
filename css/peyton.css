@@ -166,7 +166,7 @@ input::placeholder{
 	min-height: 50px;
 	background-color: var(--tan);
 	padding: 20px 10px 10px 10px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 3px 0 0 0;
 	border-style: solid;
@@ -298,7 +298,7 @@ input::placeholder{
 
 .header-right {
 	margin-top: -50px;
-	margin-right: 10px;
+	margin-right: 20px;
 	width: min-content;
 	text-align: center;
 	float: right;
@@ -347,14 +347,19 @@ input.touched:not(:focus):placeholder-shown + .invalid-feedback {
 	display: inline-block;
 }
 
-/* #logoutDoor {
-	display: none;
-}
-#logoutButton:hover + span {
-	display: inline;
+/* #logoutButton {
+	margin-top: -10px;
 } */
 
 .title-text {
 	color: inherit;
 	text-decoration: inherit;
 }
+
+.greeting {
+	margin-top: -3px;
+}
+
+/* #specialGreet {
+	margin-top: -10px;
+} */
