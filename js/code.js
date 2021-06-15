@@ -61,6 +61,9 @@ function login() {
 
                 // If id invalid, return
                 if(userID < 1) {
+					document.getElementsByClassName("negative-result")[0].style.display = "block";
+					document.getElementsByClassName("positive-result")[0].style.display = "none";
+
 					document.getElementById("positive-result").innerHTML = "";
                     document.getElementById("negative-result").innerHTML = "Username or Password is invalid";
                     return;
@@ -74,6 +77,9 @@ function login() {
                 saveCookie(username);
 
 				// Displays confirmation message
+				document.getElementsByClassName("negative-result")[0].style.display = "none";
+				document.getElementsByClassName("positive-result")[0].style.display = "block";
+
 				document.getElementById("positive-result").innerHTML = "Success!";
 
                 // Redirects to home.html
@@ -85,6 +91,9 @@ function login() {
         xhr.send(jsonPayload);
     }
     catch(err) {
+		document.getElementsByClassName("negative-result")[0].style.display = "block";
+		document.getElementsByClassName("positive-result")[0].style.display = "none";
+		
         // Throws error message in id result
         document.getElementById("negative-result").innerHTML = err.meessage;
     }
