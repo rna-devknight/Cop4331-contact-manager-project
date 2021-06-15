@@ -14,7 +14,6 @@
 	/*Dark Blue/ Blue*/
 	--brown: #0077B6;
 	--tan: #0CBABA;
-
 }
 
 @keyframes moving-background {
@@ -131,7 +130,7 @@ input:focus {
 }
 
 input::placeholder{
-  color: var(--white);
+  	color: var(--white);
 	opacity: .65;
 }
 
@@ -219,12 +218,12 @@ input::placeholder{
 	display: none;
 }
 
-/* .positive-result {
+.positive-result {
 	text-align: center;
 	color: var(--black);
 	background-color: var(--green);
 	border-radius:10px;
-	display: inline-block;
+	display: block;
 	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 2px;
 	border-style: solid;
@@ -238,14 +237,14 @@ input::placeholder{
 	color: var(--black);
 	background-color: var(--red);
 	border-radius:10px;
-	display: inline-block;
+	display: block;
 	border-color: var(--bl) var(--bd) var(--bd) var(--bl);
 	border-width: 2px;
 	border-style: solid;
 	width: 80%;
 	margin: 5px 10% 0 10%;
 	display: none;
-} */
+}
 
 .justify-content-center{
 	justify-content: center;
