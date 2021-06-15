@@ -338,7 +338,7 @@ function updateContact(contact_id) {
 
 // Function to display alert and confirm delete
 function deletePopup(contact_id) {
-  if(confirm("Are you sure you want to delete contact " + contact_id + "?")) {
+  if(confirm(firstName + " " + lastName + " are you sure you want to delete this contact?")) {
     deleteContact(contact_id);
   }
 }
