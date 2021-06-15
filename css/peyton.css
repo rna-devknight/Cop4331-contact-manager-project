@@ -207,6 +207,7 @@ input::placeholder{
 .invalid-feedback {
 	text-align: center;
 	color: var(--black);
+	font-weight: bold;
 	background-color: var(--red);
 	border-radius:10px;
 	display: inline-block;
@@ -221,6 +222,7 @@ input::placeholder{
 .positive-result {
 	text-align: center;
 	color: var(--black);
+	font-weight: bold;
 	background-color: var(--green);
 	border-radius:10px;
 	display: block;
@@ -235,6 +237,7 @@ input::placeholder{
 .negative-result {
 	text-align: center;
 	color: var(--black);
+	font-weight: bold;
 	background-color: var(--red);
 	border-radius:10px;
 	display: block;
