@@ -47,38 +47,37 @@
         </div>
 
 			<div class="row justify-content-center pt-4 main">
-					<div class="col-6 justify-content-center">
+        <div class="col-6 justify-content-center">
+          <div class="row">
+            <h5> Contacts </h5>
+            <!-- Search bar -->
+            <label for="searchText" class="col-1 col-form-label">Name:</label>
 
-						<div class="row">
-              <h5> Contacts </h5>
-							<!-- Search bar -->
-							<label for="searchText" class="col-1 col-form-label">Name:</label>
+            <div class="col-4">
+              <input type="text" id="searchText" class="form-control" placeholder="John Doe" aria-label="searchText" aria-describedby="basic-addon1">
+            </div>
 
-							<div class="col-4">
-								<input type="text" id="searchText" class="form-control" placeholder="John Doe" aria-label="searchText" aria-describedby="basic-addon1">
-							</div>
+            <p></p>
+          </div>
 
-							<p></p>
-						</div>
+          <button type="button" id="search" class="button-small btn btn-primary" onclick="searchContacts();" aria-label="search" aria-describedby="search">
+            <i class="bi bi-search" style="font-size: 1.5rem;"></i>
+          </button>
+          
+          <!-- <div>or</div> -->
+          
+          <button type="button" id="add" class="button-small btn btn-primary" onclick="showAdd();" aria-label="Add new contact" aria-describedby="Add new contact">
+            <i class="bi bi-person-plus" style="font-size: 1.5rem;"></i>
+          </button>
 
-						<button type="button" id="search" class="button-small btn btn-primary" onclick="searchContacts();" aria-label="search" aria-describedby="search">
-              <i class="bi bi-search" style="font-size: 1.5rem;"></i>
-            </button>
-            
-            <!-- <div>or</div> -->
-            
-            <button type="button" id="add" class="button-small btn btn-primary" onclick="showAdd();" aria-label="Add new contact" aria-describedby="Add new contact">
-              <i class="bi bi-person-plus" style="font-size: 1.5rem;"></i>
-            </button>
+          <span id="contactSearchResult"></span>
+          <h4 id="contact-list-heading">Contact List <br></h4>
+          <p id="contactList">
+          </p>
 
-					<span id="contactSearchResult"></span>
-					<h4 id="contact-list-heading">Contact List <br></h4>
-					<p id="contactList">
-					</p>
+          <div class="row" id="loadDatabase">
 
-				  <div class="row" id="loadDatabase">
-
-				  </div>
+          </div>
 
           <div id="add-new-box">
             <h4>New Contact</h4>
@@ -93,7 +92,7 @@
             <input type='text' id='contactEmail'><br/><br/>
             <button onclick="addContact();">Create</button>
           </div>
-          </div>
+        </div>
 			</div>
 
 			<div class="footer">
