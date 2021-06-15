@@ -333,3 +333,8 @@ input.touched:not(:focus):placeholder-shown + .invalid-feedback {
 #logoutButton:hover + span {
 	display: inline;
 } */
+
+.title-text {
+	color: inherit;
+	text-decoration: inherit;
+}
