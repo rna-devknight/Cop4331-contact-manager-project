@@ -6,10 +6,10 @@ Objective: Develop a contact mananger web app.
 | Team Member  | Role |
 | ------------- | ------------- |
 | mina21Beshay  | Project Manager [Let's be realistic :)] |
-| rna-devknight  | Front End  |
+| Ricardo  | Front End  |
 | Luis  | Database  |
 | Peyton Ryan  | API  |
-| name  | API  |
+| Charlie  | API  |
 
 ## Task list
 
