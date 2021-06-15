@@ -293,6 +293,24 @@ input::placeholder{
 	padding: 10px;
 }
 
+.header-right {
+	margin-top: -50px;
+	margin-right: 10px;
+	width: min-content;
+	text-align: center;
+	float: right;
+}
+
+.header-right-header {
+	display: inline-block;
+	width: max-content;
+}
+
+.header-right-button-box {
+	width: min-content;
+	margin: auto;
+}
+
 .footer-left {
 	width: min-content;
 	text-align:center;
