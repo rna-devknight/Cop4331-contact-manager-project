@@ -2,6 +2,8 @@
 
 Objective: Develop a contact mananger web app.
 
+This project is complete and was a success and therefore will now be archived.
+
 ## Team Members and Roles
 | Team Member  | Role |
 | ------------- | ------------- |
